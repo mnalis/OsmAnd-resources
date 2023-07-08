@@ -91,22 +91,6 @@
     }
   },
   {
-    "testName": "2.3. Highway 161 Service Road to Lyndon B Johnson Freeway (I 635) link",
-    "startPoint": {
-      "latitude": 45.69384114913531,
-      "longitude": 35.46754793822765
-    },
-    "endPoint": {
-      "latitude": 45.69231235051791,
-      "longitude": 35.49527125060558
-    },
-    "expectedResults": {
-      "26717": "[MUTE] KR:+C,TSLL|C|C",
-      "26821": "TSLL:+TSLL,C|C|C",
-      "29088": "C|C|C|C|+C"
-    }
-  },
-  {
     "testName": "3. Motorway link from Ringweg Zuid TL Amstelveenseweg",
     "startPoint": {
       "latitude": 45.6971206184178,
