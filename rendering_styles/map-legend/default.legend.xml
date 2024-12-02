@@ -42,6 +42,8 @@
 		<icon name="Siren" tag="emergency" value="siren"/>
 		<icon name="Lifeguard base" tag="emergency" value="lifeguard"/>
 		<icon name="Lifeguard tower" tag="emergency" value="lifeguard" tag2="lifeguard" value2="tower"/>
+		<icon name="Emergency bay" tag="highway" value="emergency_bay"/>
+		<icon name="Disaster responce station" tag="emergency" value="disaster_response"/>
 	</group>
 
 	<group name="Traffic, transportation" foldername="traffic">
@@ -255,7 +257,6 @@
 		<icon name="Chalet" tag="tourism" value="chalet"/>
 		<icon name="Camp site" tag="tourism" value="camp_site"/>
 		<icon name="Camp pitch" tag="tourism" value="camp_pitch"/>
-		<icon name="Lean-to" tag="tourism" value="lean_to"/>
 		<icon name="Shelter" tag="amenity" value="shelter"/>
 		<icon name="Refugee site" tag="amenity" value="refugee_site"/>
 	</group>
@@ -320,6 +321,7 @@
 		<icon name="Harbour" tag="harbour" value="yes" icon_size="22"/>
 		<icon name="Marina" tag="leisure" value="marina"/>
 		<icon name="Toy lirary" tag="amenity" value="toy_library"/>
+		<icon name="Photo booth" tag="amenity" value="photo_booth"/>
 
 		<icon name="Public bookcase" tag="amenity" value="public_bookcase"/>
 		<icon name="Feeding place" tag="amenity" value="feeding_place" icon_size="22"/>
@@ -365,7 +367,9 @@
 		<icon name="Diving" tag="sport" value="diving"/>
 		<icon name="Equestrian" tag="sport" value="equestrian"/>
 		<icon name="Field hockey" tag="sport" value="field_hockey"/>
+		<icon name="Hang gliding" tag="sport" value="hang_gliding"/>
 		<icon name="Golf" tag="sport" value="golf"/>
+		<icon name="Disc golf" tag="sport" value="disc_golf"/>
 		<icon name="Handball" tag="sport" value="handball"/>
 		<icon name="Ice hockey" tag="sport" value="ice_hockey"/>
 		<icon name="Ice rink" tag="leisure" value="ice_rink"/>
@@ -443,6 +447,7 @@
 		<icon name="Parcel locker" tag="amenity" value="parcel_locker"/>
 		<icon name="Toilets" tag="amenity" value="toilets"/>
 		<icon name="Shower" tag="amenity" value="shower"/>
+		<icon name="Dressing room" tag="amenity" value="dressing_room"/>
 		<icon name="Public bath" tag="amenity" value="public_bath"/>
 		<icon name="Telephone" tag="amenity" value="telephone"/>
 		<icon name="Bench" tag="amenity" value="bench" icon_size="22"/>
@@ -488,10 +493,12 @@
 		<icon name="Geodesist" tag="office" value="geodesist"/>
 		<icon name="Advertising agency" tag="office" value="advertising_agency"/>
 		<icon name="Educational institution" tag="office" value="educational_institution"/>
+		<icon name="Engineer office" tag="office" value="engineer"/>
 		<icon name="Religion office" tag="office" value="religion"/>
 		<icon name="Association" tag="office" value="association" icon="cooperative"/>
 		<icon name="Financial" tag="office" value="financial"/>
 		<icon name="Political party" tag="office" value="political_party"/>
+		<icon name="Property management" tag="office" value="property_management"/>
 		<icon name="Notary" tag="office" value="notary"/>
 		<icon name="Foundation" tag="office" value="foundation"/>
 		<icon name="Tax advisor" tag="office" value="tax_advisor"/>
@@ -816,7 +823,7 @@
 		<icon name="Watermill" tag="man_made" value="watermill"/>
 		<icon name="Water tap" tag="man_made" value="water_tap" icon_size="22"/>
 		<icon name="Water tower" tag="man_made" value="water_tower" icon_size="22"/>
-		<icon name="Weightbridge" tag="amenity" value="weightbridge"/>
+		<icon name="Weighbridge" tag="amenity" value="weighbridge"/>
 		<icon name="Windmill" tag="man_made" value="windmill" icon_size="22"/>
 		<icon name="Water point" tag="amenity" value="water_point" icon_size="22"/>
 		<icon name="Windsock" tag="aeroway" value="windsock" icon_size="22"/>

@@ -7,6 +7,7 @@
 	<poi_additional name="wiki_link" tag="wiki_link" type="text" order="95"/>
 	<poi_additional name="tunnel_name" lang="true" tag="tunnel:name" type="text"/>
 	<poi_additional name="bridge_name" lang="true" tag="bridge:name" type="text"/>
+	<poi_additional name="name_etymology" tag="name:etymology" type="text"/>
 	<!--
 	<poi_additional name="wikivoyage_title" lang="true" tag="title" type="text"/>
 	-->
@@ -22,16 +23,17 @@
 	<poi_additional name="lang_yes" tag="lang" lang="true" value="yes"/>
 	<poi_additional name="route_name" tag="route_name" type="text" lang="true" order="82"/>
 	<poi_additional name="route_id" tag="route_id" type="text" lang="true" order="82"/>
-	
-	<!-- should be not a text though it's not implemented without listing all possible values -->
-	<poi_additional name="gpx_icon" tag="gpx_icon" type="text"/>
-	<poi_additional name="gpx_bg" tag="gpx_bg"  type="text"/>
-	<poi_additional name="color" tag="colour" type="text"/>
-<!--
-	<poi_additional name="color_int" tag="color_int" type="text" lang="true" order="82"/>
--->
+	<poi_additional name="from" tag="from" type="text" order="79"/>
+	<poi_additional name="to" tag="to" type="text" order="78"/>
+	<poi_additional name="via" tag="via" type="text" order="78"/>
+	<poi_additional name="cycle_network" tag="cycle_network" type="text" order="76"/>
+	<poi_additional name="ascent" tag="ascent" type="text" order="75"/>
+	<poi_additional name="descent" tag="descent" type="text" order="74"/>
 
-	
+	<poi_additional name="roundtrip_yes" tag="roundtrip" value="yes"/>
+	<poi_additional name="roundtrip_no" tag="roundtrip" value="no"/>
+
+	<!-- <poi_additional name="color_int" tag="color_int" type="text" lang="true" order="82"/> -->
 
 	<poi_additional name="phone" tag="phone" type="text" order="82"/>
 	<poi_additional name="mobile" tag="contact:mobile" type="text" order="82"/>
@@ -60,7 +62,6 @@
 	<poi_additional name="directions" tag="directions" type="text" lang="true" />
 	<poi_additional name="price" tag="price" type="text" lang="true" />
 
-
 	<poi_additional name="wikimedia_commons" tag="wikimedia_commons" type="text"/>
 	<poi_additional name="content" tag="content" type="text" lang="true" no_edit="true"/>  <!-- This line should be outside categories to avoid searching via POI search -->
 	<poi_additional name="maxheight" tag="maxheight" type="text"/>
@@ -83,7 +84,7 @@
 	<poi_additional name="osmand_change_delete" tag="osmand_change" value="delete" no_edit="true"/>
 	<poi_additional name="tourism_yes" tag="tourism" value="yes"/>
 	<poi_additional name="destination" tag="destination" type="text"/>
-	<poi_additional name="operator" tag="operator" type="text" order="91"/>
+	<poi_additional name="operator" tag="operator" type="text" order="91" lang="true"/>
 	<poi_additional name="operator_type_public" tag="operator:type" value="public"/>
 	<poi_additional name="operator_type_private" tag="operator:type" value="private"/>
 	<poi_additional name="operator_type_government" tag="operator:type" value="government"/>
@@ -93,7 +94,7 @@
 	<poi_additional name="operator_type_consortium" tag="operator:type" value="consortium"/>
 	<poi_additional name="operator_type_cooperative" tag="operator:type" value="cooperative"/>
 	<poi_additional name="owner" tag="owner" type="text" order="92"/>
-	<poi_additional name="brand" tag="brand" type="text" order="93"/>
+	<poi_additional name="brand" tag="brand" type="text" order="93" top_index="true" max_per_map="100" min_count="3" lang="true"/>
 	<poi_additional name="manufacturer" tag="manufacturer" type="text"/>
 	<poi_additional name="model_type" tag="model" type="text"/>
 	<poi_additional name="vhf" tag="vhf" type="text"/>
@@ -118,6 +119,7 @@
 	<poi_additional name="vehicle_private" tag="vehicle" value="private"/>
 	<poi_additional name="vehicle_no" tag="vehicle" value="no"/>
 	<poi_additional name="vehicle_destination" tag="vehicle" value="destination"/>
+	<poi_additional name="vehicle_designated" tag="vehicle" value="designated"/>
 	<poi_additional name="vehicle_permissive" tag="vehicle" value="permissive"/>
 	<poi_additional name="vehicle_customers" tag="vehicle" value="customers"/>
 	<poi_additional name="vehicle_military" tag="vehicle" value="military"/>
@@ -127,6 +129,7 @@
 	<poi_additional name="motorcar_private" tag="motorcar" value="private" icon="motorcar_no"/>
 	<poi_additional name="motorcar_no" tag="motorcar" value="no"/>
 	<poi_additional name="motorcar_destination" tag="motorcar" value="destination"/>
+	<poi_additional name="motorcar_designated" tag="motorcar" value="designated"/>
 	<poi_additional name="motorcar_permissive" tag="motorcar" value="permissive"/>
 	<poi_additional name="motorcar_customers" tag="motorcar" value="customers"/>
 	<poi_additional name="motorcar_forestry" tag="motorcar" value="forestry"/>
@@ -135,6 +138,7 @@
 	<poi_additional name="motor_vehicle_private" tag="motor_vehicle" value="private"/>
 	<poi_additional name="motor_vehicle_no" tag="motor_vehicle" value="no"/>
 	<poi_additional name="motor_vehicle_destination" tag="motor_vehicle" value="destination"/>
+	<poi_additional name="motor_vehicle_designated" tag="motor_vehicle" value="designated"/>
 	<poi_additional name="motor_vehicle_permissive" tag="motor_vehicle" value="permissive"/>
 	<poi_additional name="motor_vehicle_customers" tag="motor_vehicle" value="customers"/>
 	<poi_additional name="motor_vehicle_military" tag="motor_vehicle" value="military"/>
@@ -160,11 +164,13 @@
 	<poi_additional name="bicycle_private" tag="bicycle" value="private"/>
 	<poi_additional name="bicycle_dismount" tag="bicycle" value="dismount"/>
 	<poi_additional name="bicycle_destination" tag="bicycle" value="destination"/>
+	<poi_additional name="bicycle_designated" tag="bicycle" value="designated"/>
 	<poi_additional name="bicycle_permissive" tag="bicycle" value="permissive"/>
 	<poi_additional name="bicycle_customers" tag="bicycle" value="customers"/>
 
 	<poi_additional name="horse_private" tag="horse" value="private"/>
 	<poi_additional name="horse_destination" tag="horse" value="destination"/>
+	<poi_additional name="horse_designated" tag="horse" value="designated"/>
 	<poi_additional name="horse_permissive" tag="horse" value="permissive"/>
 	<poi_additional name="horse_forestry" tag="horse" value="forestry"/>
 
@@ -172,6 +178,7 @@
 	<poi_additional name="foot_private" tag="foot" value="private"/>
 	<poi_additional name="foot_no" tag="foot" value="no"/>
 	<poi_additional name="foot_destination" tag="foot" value="destination"/>
+	<poi_additional name="foot_designated" tag="foot" value="designated"/>
 	<poi_additional name="foot_permissive" tag="foot" value="permissive"/>
 	<poi_additional name="foot_customers" tag="foot" value="customers"/>
 
@@ -364,6 +371,23 @@
 	<poi_additional name="direction_entrance" tag="direction" value="entrance"/>
 	<poi_additional name="direction_exit" tag="direction" value="exit"/>
 	<poi_additional name="direction_all" tag="direction" value="all"/>
+	<poi_additional name="direction" tag="direction" type="text"/>
+
+	<poi_additional name="state_proposed" tag="state" value="proposed"/>
+	<poi_additional name="state_alternate" tag="state" value="alternate"/>
+	<poi_additional name="state_connection" tag="state" value="connection"/>
+	<poi_additional name="state_inuse" tag="state" value="inuse"/>
+	<poi_additional name="state_recommended" tag="state" value="recommended"/>
+	<poi_additional name="state_temporary" tag="state" value="temporary"/>
+	<poi_additional name="state_disused" tag="state" value="disused"/>
+	<poi_additional name="state_closed" tag="state" value="closed"/>
+	<poi_additional name="state_abandoned" tag="state" value="abandoned"/>
+	<poi_additional name="state_approved" tag="state" value="approved"/>
+	<poi_additional name="state_active" tag="state" value="active"/>
+	<poi_additional name="state_under_construction" tag="state" value="under_construction"/>
+	<poi_additional name="state_main" tag="state" value="main"/>
+	<poi_additional name="state_suspended" tag="state" value="suspended"/>
+	<poi_additional name="state_detour" tag="state" value="detour"/>
 
 	<poi_additional name="capacity" tag="capacity" type="text"/>
 	<poi_additional name="capacity_disabled_no" tag="capacity:disabled" value="no"/>
@@ -471,6 +495,8 @@
 	<poi_additional name="payment_visa_contactless_no" tag="payment:visa_contactless" value="no"/>
 	<poi_additional name="payment_calling_cards_no" tag="payment:calling_cards" value="no"/>
 	<poi_additional name="payment_reverse_charge_calls_no" tag="payment:reverse_charge_calls" value="no"/>
+    <poi_additional name="payment_parco_no" tag="payment:parco" value="no"/>
+    <poi_additional name="payment_parkster_no" tag="payment:parkster" value="no"/>
 	<poi_additional name="description_payment" tag="description:payment" type="text"/>
 
 	<poi_additional_category name="payment_type">
@@ -541,6 +567,8 @@
 		<poi_additional name="payment_visa_contactless_yes" tag="payment:visa_contactless" value="yes"/>
 		<poi_additional name="payment_calling_cards_yes" tag="payment:calling_cards" value="yes"/>
 		<poi_additional name="payment_reverse_charge_calls_yes" tag="payment:reverse_charge_calls" value="yes"/>
+        <poi_additional name="payment_parco_yes" tag="payment:parco" value="yes"/>
+        <poi_additional name="payment_parkster_yes" tag="payment:parkster" value="yes"/>
 	</poi_additional_category>
 
 	<poi_additional name="internet_access_fee_yes" tag="internet_access:fee" value="yes"/>
@@ -548,25 +576,14 @@
 	<poi_additional name="internet_access_fee_customers" tag="internet_access:fee" value="customers"/>
 	<poi_additional name="internet_access_ssid" tag="internet_access:ssid" type="text" icon="internet_access_wlan"/>
 
-	<poi_additional name="diet_vegetarian_only" tag="diet:vegetarian" value="only"/>
-	<poi_additional name="diet_vegetarian_yes" tag="diet:vegetarian" value="yes"/>
 	<poi_additional name="diet_vegetarian_no" tag="diet:vegetarian" value="no"/>
-	<poi_additional name="diet_vegan_only" tag="diet:vegan" value="only"/>
-	<poi_additional name="diet_vegan_yes" tag="diet:vegan" value="yes"/>
 	<poi_additional name="diet_vegan_no" tag="diet:vegan" value="no"/>
 	<poi_additional name="diet_vegan_limited" tag="diet:vegan" value="limited"/>
-	<poi_additional name="diet_gluten_free_only" tag="diet:gluten_free" value="only"/>
-	<poi_additional name="diet_gluten_free_yes" tag="diet:gluten_free" value="yes"/>
 	<poi_additional name="diet_gluten_free_no" tag="diet:gluten_free" value="no"/>
-	<poi_additional name="diet_kosher_only" tag="diet:kosher" value="only"/>
-	<poi_additional name="diet_kosher_yes" tag="diet:kosher" value="yes"/>
 	<poi_additional name="diet_kosher_no" tag="diet:kosher" value="no"/>
-	<poi_additional name="diet_halal_only" tag="diet:halal" value="only"/>
-	<poi_additional name="diet_halal_yes" tag="diet:halal" value="yes"/>
 	<poi_additional name="diet_halal_no" tag="diet:halal" value="no"/>
-	<poi_additional name="diet_lactose_free_only" tag="diet:lactose_free" value="only"/>
-	<poi_additional name="diet_lactose_free_yes" tag="diet:lactose_free" value="yes"/>
 	<poi_additional name="diet_lactose_free_no" tag="diet:lactose_free" value="no"/>
+	<poi_additional name="diet_pescetarian_no" tag="diet:pescetarian" value="no"/>
 
 	<poi_additional name="drive_in_no" tag="drive_in" value="no"/>
 	<poi_additional name="drive_through_no" tag="drive_through" value="no"/>
@@ -585,6 +602,10 @@
 	<poi_additional name="outdoor_seating_garden" tag="outdoor_seating" value="garden"/>
 	<poi_additional name="outdoor_seating_patio" tag="outdoor_seating" value="patio"/>
 	<poi_additional name="outdoor_seating_no" tag="outdoor_seating" value="no"/>
+
+	<poi_additional name="indoor_seating_yes" tag="indoor_seating" value="yes"/>
+	<poi_additional name="indoor_seating_no" tag="indoor_seating" value="no"/>
+	<poi_additional name="indoor_seating_bar_table" tag="indoor_seating" value="bar_table"/>
 
 	<poi_additional name="second_hand_no" tag="second_hand" value="no"/>
 	
@@ -1070,7 +1091,7 @@
 	<poi_additional name="inscription_ne" tag="inscription:ne" type="text"/>
 
 	<poi_additional name="construction_yes" tag="construction" value="yes"/>
-	<poi_additional name="atm_yes" tag="atm" value="yes"/>
+	<poi_additional name="atm_yes" tag="atm" value="yes" order="99"/>
 	<poi_additional name="atm_no" tag="atm" value="no"/>
 
 <!--	<poi_additional name="osmand_additional_fuel_electricity_yes" tag="osmand_additional_fuel_electricity" value="yes" no_edit="true"/>-->
@@ -1151,11 +1172,6 @@
 
 	<poi_additional name="winter_room_yes" tag="winter_room" value="yes"/>
 	<poi_additional name="winter_room_no" tag="winter_room" value="no"/>
-	<poi_additional name="reservation_required" tag="reservation" value="required"/>
-	<poi_additional name="reservation_recommended" tag="reservation" value="recommended"/>
-	<poi_additional name="reservation_yes" tag="reservation" value="yes"/>
-	<poi_additional name="reservation_no" tag="reservation" value="no"/>
-	<poi_additional name="reservation_members_only" tag="reservation" value="members_only"/>
 
 	<poi_additional name="beds" tag="beds" type="text"/>
 
@@ -1237,6 +1253,7 @@
 	<poi_additional name="climbing_ice_no" tag="climbing:ice" value="no"/>
 	<poi_additional name="climbing_mixed_no" tag="climbing:mixed" value="no"/>
 	<poi_additional name="climbing_deepwater_no" tag="climbing:deepwater" value="no"/>
+	<poi_additional name="climbing_boulder" tag="climbing" value="boulder" icon="natural_stone"/>
 
 	<poi_additional name="climbing_bolts" tag="climbing:bolts" type="text"/>
 	<poi_additional name="climbing_summit_log_no" tag="climbing:summit_log" value="no"/>
@@ -1253,7 +1270,6 @@
 
 	<poi_additional name="backcountry_no" tag="backcountry" value="no"/>
 	<poi_additional name="scout_no" tag="scout" value="no"/>
-	<poi_additional name="impromptu_no" tag="impromptu" value="no"/>
 
 	<poi_additional name="backrest_no" tag="backrest" value="no"/>
 	<poi_additional name="takeaway_no" tag="takeaway" value="no"/>
@@ -1586,6 +1602,7 @@
 			<poi_type name="garden_furniture" tag="shop" value="garden_furniture"/>
 			<poi_type name="groundskeeping" tag="shop" value="groundskeeping"/>
 			<poi_type name="gas" tag="shop" value="gas"/>
+			<poi_type name="shop_general" tag="shop" value="general" icon="shop_yes"/>
 			<poi_type name="shop_yes" tag="shop" value="yes"/>
 			<poi_type name="gift" tag="shop" value="gift"/>
 			<poi_type name="glaziery" tag="shop" value="glaziery"/>
@@ -1716,7 +1733,7 @@
 			<poi_type name="police" tag="amenity" value="police" poi_additional_category="opening_hours"/>
 			<poi_type name="fire_station" tag="amenity" value="fire_station"/>
 			<poi_type name="ambulance_station" tag="emergency" value="ambulance_station" poi_additional_category="opening_hours"/>
-			<poi_type name="ses_station" tag="emergency" value="ses_station" poi_additional_category="opening_hours"/>
+			<poi_type name="disaster_response" tag="emergency" value="disaster_response" poi_additional_category="opening_hours"/>
 			<poi_type name="rescue_station" tag="amenity" value="rescue_station" poi_additional_category="opening_hours"/>
 			<poi_type name="mountain_rescue" tag="emergency" value="mountain_rescue" poi_additional_category="opening_hours"/>
 			<poi_type name="lifeguard" tag="emergency" value="lifeguard" poi_additional_category="opening_hours">
@@ -1956,6 +1973,7 @@
 					<poi_additional name="osmand_socket_type2_combo_yes" tag="osmand_socket_type2_combo" value="yes" no_edit="true" filter_only="true" top="true"/>
 					<poi_additional name="osmand_socket_type3a_yes" tag="osmand_socket_type3a" value="yes" no_edit="true" filter_only="true" top="true"/>
 					<poi_additional name="osmand_socket_type3c_yes" tag="osmand_socket_type3c" value="yes" no_edit="true" filter_only="true" top="true"/>
+					<poi_additional name="osmand_socket_typee_yes" tag="osmand_socket_typee" value="yes" no_edit="true" filter_only="true"/>
 					<poi_additional name="osmand_socket_chademo_yes" tag="osmand_socket_chademo" value="yes" no_edit="true" filter_only="true" top="true"/>
 					<poi_additional name="osmand_socket_tesla_standard_yes" tag="osmand_socket_tesla_standard" value="yes" no_edit="true" filter_only="true"/>
 					<poi_additional name="osmand_socket_tesla_supercharger_yes" tag="osmand_socket_tesla_supercharger" value="yes" no_edit="true" filter_only="true" top="true"/>
@@ -2028,6 +2046,11 @@
 					<poi_additional name="osmand_socket_type3c_voltage_medium" tag="osmand_socket_type3c_voltage" value="medium" no_edit="true" filter_only="true"/>
 					<poi_additional name="osmand_socket_type3c_voltage_low" tag="osmand_socket_type3c_voltage" value="low" no_edit="true" filter_only="true"/>
 				</poi_additional_category>
+				<poi_additional_category name="socket_typee_voltage_filter">
+					<poi_additional name="osmand_socket_typee_voltage_high" tag="osmand_socket_typee_voltage" value="high" no_edit="true" filter_only="true"/>
+					<poi_additional name="osmand_socket_typee_voltage_medium" tag="osmand_socket_typee_voltage" value="medium" no_edit="true" filter_only="true"/>
+					<poi_additional name="osmand_socket_typee_voltage_low" tag="osmand_socket_typee_voltage" value="low" no_edit="true" filter_only="true"/>
+				</poi_additional_category>
 				<poi_additional_category name="socket_cee_blue_output_filter">
 					<poi_additional name="osmand_socket_cee_blue_output_high" tag="osmand_socket_cee_blue_output" value="high" no_edit="true" filter_only="true"/>
 					<poi_additional name="osmand_socket_cee_blue_output_medium" tag="osmand_socket_cee_blue_output" value="medium" no_edit="true" filter_only="true"/>
@@ -2096,6 +2119,10 @@
 				<poi_additional name="socket_type3c_current" tag="socket:type3c:current" type="text"/>
 				<poi_additional name="socket_type3c_output" tag="socket:type3c:output" type="text"/>
 				<poi_additional name="socket_type3c_voltage" tag="socket:type3c:voltage" type="text"/>
+				<poi_additional name="socket_typee" tag="socket:typee" type="text"/>
+				<poi_additional name="socket_typee_current" tag="socket:typee:current" type="text"/>
+				<poi_additional name="socket_typee_output" tag="socket:typee:output" type="text"/>
+				<poi_additional name="socket_typee_voltage" tag="socket:typee:voltage" type="text"/>
 				<poi_additional name="socket_chademo" tag="socket:chademo" type="text"/>
 				<poi_additional name="socket_chademo_current" tag="socket:chademo:current" type="text"/>
 				<poi_additional name="socket_chademo_output" tag="socket:chademo:output" type="text"/>
@@ -2447,6 +2474,7 @@
 					</poi_additional_category>
 					<poi_additional name="course" tag="course" type="text"/>
 				</poi_type>
+				<poi_type name="checkpoint_cycling" tag="checkpoint" value="cycling" poi_additional_category="checkpoint_type" icon="checkpoint_hiking"/>
 			</poi_filter>
 <!--			<poi_filter name="hiking_routes" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,internet_access_type,opening_hours">
 				<poi_type name="route_hiking_iwn_poi" tag="route_hiking_iwn_poi" value="yes" relation="true" name_tag="hiking_route_name" no_edit="true"/>
@@ -2470,6 +2498,7 @@
 <!--			<poi_type name="passing_place" tag="highway" value="passing_place" no_edit="true" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility"/>-->
 			<poi_type name="rest_area" tag="highway" value="rest_area" excluded_poi_additional_category="wheelchair_accessibility,fee,payment_type,internet_access_type,opening_hours"/>
 			<poi_type name="escape_lane" tag="highway" value="escape" no_edit="true" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,internet_access_type,opening_hours"/>
+			<poi_type name="emergency_bay" tag="highway" value="emergency_bay" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,internet_access_type,opening_hours"/>
 			<poi_type name="traffic_mirror" tag="highway" value="traffic_mirror" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,internet_access_type,opening_hours"/>
 		</poi_category>
 		
@@ -2593,7 +2622,7 @@
 				<poi_type name="watering_place" tag="amenity" value="watering_place" poi_additional_category="drinking_water"/>
 				<poi_type name="dock" tag="waterway" value="dock"/>
 			</poi_filter>
-			<poi_filter name="water_filter" top="true">
+			<poi_filter name="water_filter" icon="drinking_water_yes" top="true">
 				<poi_reference name="water_well"/>
 				<poi_reference name="drinking_water"/>
 				<poi_reference name="spring"/>
@@ -2825,7 +2854,7 @@
 				<poi_additional name="radar" tag="monitoring_station" value="radar"/>
 			</poi_type>
 			<poi_type name="crane" tag="man_made" value="crane"/>
-			<poi_type name="weightbridge" tag="amenity" value="weightbridge"/>
+			<poi_type name="weighbridge" tag="amenity" value="weighbridge"/>
 			<poi_type name="chimney" tag="man_made" value="chimney"/>
 			<poi_type name="ventilation_shaft" tag="man_made" value="ventilation_shaft"/>
 			<poi_type name="pumping_station" tag="man_made" value="pumping_station"/>
@@ -2859,7 +2888,7 @@
 			<poi_type name="fish_pass" tag="man_made" value="fish_pass"/>
 			<poi_type name="dovecote" tag="man_made" value="dovecote"/>
 			<poi_type name="abandoned_poi" tag="abandoned_poi" value="yes" no_edit="true"/>
-			<poi_type name="building" tag="building" value="yes"> <!-- building:type is internal tag here. It is deprecated in OSM. -->
+			<poi_type name="building" tag="building" value="yes" order="99"> <!-- building:type is internal tag here. It is deprecated in OSM. -->
 				<poi_additional name="building_type_church" tag="building:type" value="church" no_edit="true"/>
 				<poi_additional name="building_type_chapel" tag="building:type" value="chapel" no_edit="true"/>
 				<poi_additional name="building_type_mosque" tag="building:type" value="mosque" no_edit="true"/>
@@ -3043,9 +3072,9 @@
 				</poi_additional_category>
 			</poi_type>
 			<poi_type name="health_post" tag="amenity" value="health_post"/>
-			<poi_type name="hospital" tag="amenity" value="hospital"/>
-			<poi_type name="doctors" tag="amenity" value="doctors" poi_additional_category="health_specialty"/>
-			<poi_type name="clinic" tag="amenity" value="clinic" poi_additional_category="health_specialty"/>
+			<poi_type name="hospital" tag="amenity" value="hospital" poi_additional_category="healthcare_speciality,healthcare_speciality_clinic,healthcare_speciality_psychotherapist,healthcare_speciality_laboratory"/>
+			<poi_type name="doctors" tag="amenity" value="doctors" poi_additional_category="healthcare_speciality,healthcare_speciality_clinic,healthcare_speciality_psychotherapist,healthcare_speciality_laboratory"/>
+			<poi_type name="clinic" tag="amenity" value="clinic" poi_additional_category="healthcare_speciality,healthcare_speciality_clinic,healthcare_speciality_psychotherapist,healthcare_speciality_laboratory"/>
 <!--			<poi_type name="first_aid" tag="amenity" value="first_aid"/>-->
 			<poi_type name="dentist" tag="amenity" value="dentist"/>
 			<poi_type name="social_facility" tag="amenity" value="social_facility" poi_additional_category="fridge_filter">
@@ -3081,32 +3110,42 @@
 <!--			<poi_type name="sanatorium" tag="amenity" value="sanatorium"/>-->
 			<poi_type name="healthcare_alternative" tag="healthcare" value="alternative">
 				<poi_additional_category name="healthcare_alternative_types">
-					<poi_additional name="health_specialty_acupuncture_yes" tag="health_specialty:acupuncture" value="yes"/>
-					<poi_additional name="health_specialty_homeopathy_yes" tag="health_specialty:homeopathy" value="yes"/>
-					<poi_additional name="health_specialty_traditional_chinese_medicine_yes" tag="health_specialty:traditional_chinese_medicine" value="yes"/>
-					<poi_additional name="health_specialty_reiki_yes" tag="health_specialty:reiki" value="yes"/>
-					<poi_additional name="health_specialty_herbalism_yes" tag="health_specialty:herbalism" value="yes"/>
-					<poi_additional name="health_specialty_chiropractic_yes" tag="health_specialty:chiropractic" value="yes"/>
-					<poi_additional name="health_specialty_naturopathy_yes" tag="health_specialty:naturopathy" value="yes"/>
-					<poi_additional name="health_specialty_osteopathy_yes" tag="health_specialty:osteopathy" value="yes"/>
+					<poi_additional name="healthcare_speciality_acupuncture" tag="healthcare:speciality" value="acupuncture"/>
+					<poi_additional name="healthcare_speciality_homeopathy" tag="healthcare:speciality" value="homeopathy"/>
+					<poi_additional name="healthcare_speciality_traditional_chinese_medicine" tag="healthcare:speciality" value="traditional_chinese_medicine"/>
+					<poi_additional name="healthcare_speciality_reiki" tag="healthcare:speciality" value="reiki"/>
+					<poi_additional name="healthcare_speciality_herbalism" tag="healthcare:speciality" value="herbalism"/>
+					<poi_additional name="healthcare_speciality_chiropractic" tag="healthcare:speciality" value="chiropractic" top="true"/>
+					<poi_additional name="healthcare_speciality_naturopathy" tag="healthcare:speciality" value="naturopathy"/>
+					<poi_additional name="healthcare_speciality_osteopathy" tag="healthcare:speciality" value="osteopathy"/>
+					<poi_additional name="healthcare_speciality_ayurveda" tag="healthcare:speciality" value="ayurveda"/>
+					<poi_additional name="healthcare_speciality_reflexology" tag="healthcare:speciality" value="reflexology"/>
+					<poi_additional name="healthcare_speciality_anthroposophical" tag="healthcare:speciality" value="anthroposophical"/>
+					<poi_additional name="healthcare_speciality_applied_kinesiology" tag="healthcare:speciality" value="applied_kinesiology"/>
+					<poi_additional name="healthcare_speciality_aromatherapy" tag="healthcare:speciality" value="aromatherapy"/>
+					<poi_additional name="healthcare_speciality_hydrotherapy" tag="healthcare:speciality" value="hydrotherapy"/>
+					<poi_additional name="healthcare_speciality_hypnosis" tag="healthcare:speciality" value="hypnosis"/>
+					<poi_additional name="healthcare_speciality_shiatsu" tag="healthcare:speciality" value="shiatsu"/>
+					<poi_additional name="healthcare_speciality_tuina" tag="healthcare:speciality" value="tuina"/>
+					<poi_additional name="healthcare_speciality_unani" tag="healthcare:speciality" value="unani"/>
 				</poi_additional_category>
 			</poi_type>
-			<poi_type name="audiologist" tag="healthcare" value="audiologist"/>
+			<poi_type name="audiologist" tag="healthcare" value="audiologist" poi_additional_category="healthcare_speciality"/>
 			<poi_type name="blood_bank" tag="healthcare" value="blood_bank"/>
-			<poi_type name="midwife" tag="healthcare" value="midwife"/>
-			<poi_type name="nurse" tag="healthcare" value="nurse"/>
-			<poi_type name="occupational_therapist" tag="healthcare" value="occupational_therapist"/>
-			<poi_type name="optometrist" tag="healthcare" value="optometrist"/>
-			<poi_type name="physiotherapist" tag="healthcare" value="physiotherapist"/>
-			<poi_type name="podiatrist" tag="healthcare" value="podiatrist"/>
-			<poi_type name="psychotherapist" tag="healthcare" value="psychotherapist"/>
-			<poi_type name="healthcare_rehabilitation" tag="healthcare" value="rehabilitation"/>
-			<poi_type name="speech_therapist" tag="healthcare" value="speech_therapist"/>
-			<poi_type name="paediatrics" tag="healthcare" value="paediatrics"/>
-			<poi_type name="healthcare_yes" tag="healthcare" value="yes"/>
-			<poi_type name="hospice" tag="healthcare" value="hospice"/>
-			<poi_type name="laboratory" tag="healthcare" value="laboratory"/>
-			<poi_type name="blood_donation" tag="healthcare" value="blood_donation"/>
+			<poi_type name="midwife" tag="healthcare" value="midwife" poi_additional_category="healthcare_speciality"/>
+			<poi_type name="nurse" tag="healthcare" value="nurse" poi_additional_category="healthcare_speciality"/>
+			<poi_type name="occupational_therapist" tag="healthcare" value="occupational_therapist" poi_additional_category="healthcare_speciality"/>
+			<poi_type name="optometrist" tag="healthcare" value="optometrist" poi_additional_category="healthcare_speciality"/>
+			<poi_type name="physiotherapist" tag="healthcare" value="physiotherapist" poi_additional_category="healthcare_speciality"/>
+			<poi_type name="podiatrist" tag="healthcare" value="podiatrist" poi_additional_category="healthcare_speciality"/>
+			<poi_type name="psychotherapist" tag="healthcare" value="psychotherapist" poi_additional_category="healthcare_speciality,healthcare_speciality_psychotherapist"/>
+			<poi_type name="healthcare_rehabilitation" tag="healthcare" value="rehabilitation" poi_additional_category="healthcare_speciality"/>
+			<poi_type name="speech_therapist" tag="healthcare" value="speech_therapist" poi_additional_category="healthcare_speciality"/>
+			<poi_type name="paediatrics" tag="healthcare" value="paediatrics" poi_additional_category="healthcare_speciality"/>
+			<poi_type name="healthcare_yes" tag="healthcare" value="yes" poi_additional_category="healthcare_speciality,healthcare_speciality_clinic,healthcare_speciality_psychotherapist,healthcare_speciality_laboratory"/>
+			<poi_type name="hospice" tag="healthcare" value="hospice" poi_additional_category="healthcare_speciality"/>
+			<poi_type name="laboratory" tag="healthcare" value="laboratory" poi_additional_category="healthcare_speciality,healthcare_speciality_laboratory"/>
+			<poi_type name="blood_donation" tag="healthcare" value="blood_donation" poi_additional_category="healthcare_speciality"/>
 			<poi_type name="health_amenity_type_first_aid_kit" tag="health_amenity:type" value="first_aid_kit" excluded_poi_additional_category="wheelchair_accessibility,opening_hours"/>
 			<poi_type name="health_amenity_type_scales" tag="health_amenity:type" value="scales" excluded_poi_additional_category="wheelchair_accessibility,opening_hours"/>
 			<poi_type name="health_facility_type_office" tag="health_facility:type" value="office">
@@ -3116,65 +3155,123 @@
 				<poi_additional name="office_psychologist" tag="office" value="psychologist"/>
 				<poi_additional name="office_nursing_service" tag="office" value="nursing_service"/>
 				<poi_additional name="office_midwife" tag="office" value="midwife"/>
-				<poi_additional_category name="health_specialty">
-					<poi_additional name="health_specialty_general_yes" tag="health_specialty:general" value="yes"/>
-					<poi_additional name="health_specialty_ophthalmology_yes" tag="health_specialty:ophthalmology" value="yes"/>
-					<poi_additional name="health_specialty_gynaecology_yes" tag="health_specialty:gynaecology" value="yes"/>
-					<poi_additional name="health_specialty_internal_medicine_yes" tag="health_specialty:internal_medicine" value="yes"/>
-					<poi_additional name="health_specialty_orthopaedics_yes" tag="health_specialty:orthopaedics" value="yes"/>
-					<poi_additional name="health_specialty_otolaryngology_yes" tag="health_specialty:otolaryngology" value="yes"/>
-					<poi_additional name="health_specialty_paediatrics_yes" tag="health_specialty:paediatrics" value="yes" top="true"/>
-					<poi_additional name="health_specialty_dermatology_yes" tag="health_specialty:dermatology" value="yes"/>
-					<poi_additional name="health_specialty_urology_yes" tag="health_specialty:urology" value="yes"/>
-					<poi_additional name="health_specialty_surgery_yes" tag="health_specialty:surgery" value="yes"/>
-					<poi_additional name="health_specialty_radiology_yes" tag="health_specialty:radiology" value="yes"/>
-					<poi_additional name="health_specialty_radiotherapy_yes" tag="health_specialty:radiotherapy" value="yes"/>
-					<poi_additional name="health_specialty_psychiatry_yes" tag="health_specialty:psychiatry" value="yes"/>
-					<poi_additional name="health_specialty_neurology_yes" tag="health_specialty:neurology" value="yes"/>
-					<poi_additional name="health_specialty_dermatovenereology_yes" tag="health_specialty:dermatovenereology" value="yes"/>
-					<poi_additional name="health_specialty_cardiology_yes" tag="health_specialty:cardiology" value="yes"/>
-					<poi_additional name="health_specialty_trauma_yes" tag="health_specialty:traumatology" value="yes"/>
-					<poi_additional name="health_specialty_biology_yes" tag="health_specialty:biology" value="yes"/>
-					<poi_additional name="health_specialty_anaesthetics_yes" tag="health_specialty:anaesthetics" value="yes"/>
-					<poi_additional name="health_specialty_pulmonology_yes" tag="health_specialty:pulmonology" value="yes"/>
-					<poi_additional name="health_specialty_dental_oral_maxillo_facial_surgery_yes" tag="health_specialty:dental_oral_maxillo_facial_surgery" value="yes"/>
-					<poi_additional name="health_specialty_maternity_yes" tag="health_specialty:maternity" value="yes"/>
-					<poi_additional name="health_specialty_emergency_medicine_yes" tag="health_specialty:emergency_medicine" value="yes" top="true"/>
-					<poi_additional name="health_specialty_plastic_surgery_yes" tag="health_specialty:plastic_surgery" value="yes"/>
-					<poi_additional name="health_specialty_orthodontics_yes" tag="health_specialty:orthodontics" value="yes"/>
-					<poi_additional name="health_specialty_physiotherapy_yes" tag="health_specialty:physiotherapy" value="yes" top="true"/>
-					<poi_additional name="health_specialty_biochemistry_yes" tag="health_specialty:biochemistry" value="yes"/>
-					<poi_additional name="health_specialty_occupational_yes" tag="health_specialty:occupational_therapy" value="yes"/>
-					<poi_additional name="health_specialty_child_psychiatry_yes" tag="health_specialty:child_psychiatry" value="yes"/>
-					<poi_additional name="health_specialty_physiatry_yes" tag="health_specialty:physiatry" value="yes"/>
-					<poi_additional name="health_specialty_maxillofacial_surgery_yes" tag="health_specialty:maxillofacial_surgery" value="yes"/>
-					<poi_additional name="health_specialty_diagnostic_radiology_yes" tag="health_specialty:diagnostic_radiology" value="yes"/>
-					<poi_additional name="health_specialty_gastroenterology_yes" tag="health_specialty:gastroenterology" value="yes"/>
-					<poi_additional name="health_specialty_dentistry_yes" tag="health_specialty:dentistry" value="yes" top="true"/>
-					<poi_additional name="health_specialty_nephrology_yes" tag="health_specialty:nephrology" value="yes"/>
-					<poi_additional name="health_specialty_neurosurgery_yes" tag="health_specialty:neurosurgery" value="yes"/>
-					<poi_additional name="health_specialty_neuropsychiatry_yes" tag="health_specialty:neuropsychiatry" value="yes"/>
-					<poi_additional name="health_specialty_endocrinology_yes" tag="health_specialty:endocrinology" value="yes"/>
-					<poi_additional name="health_specialty_nuclear_medicine_yes" tag="health_specialty:nuclear_medicine" value="yes"/>
-					<poi_additional name="health_specialty_pathology_yes" tag="health_specialty:pathology" value="yes"/>
-					<poi_additional name="health_specialty_oncology_yes" tag="health_specialty:oncology" value="yes"/>
-					<poi_additional name="health_specialty_tropical_medicine_yes" tag="health_specialty:tropical_medicine" value="yes"/>
-					<poi_additional name="health_specialty_obstetrics_postnatal_yes" tag="health_specialty:obstetrics:postnatal" value="yes"/>
-					<poi_additional name="health_specialty_obstetrics_antenatal_yes" tag="health_specialty:obstetrics:antenatal" value="yes"/>
-					<poi_additional name="health_specialty_social_paediatrics_yes" tag="health_specialty:social_paediatrics" value="yes"/>
-					<poi_additional name="health_specialty_obstetrics_caesarean_section_yes" tag="health_specialty:obstetrics:caesarean_section" value="yes"/>
-					<poi_additional name="health_specialty_addiction_medicine_yes" tag="health_specialty:addiction_medicine" value="yes"/>
-					<poi_additional name="health_specialty_optometry_yes" tag="health_specialty:optometry" value="yes"/>
-					<poi_additional name="health_specialty_clinical_pathology_yes" tag="health_specialty:clinical_pathology" value="yes"/>
-					<poi_additional name="health_specialty_speech_therapy_yes" tag="health_specialty:speech_therapy" value="yes"/>
-					<poi_additional name="health_specialty_manual_therapy_yes" tag="health_specialty:manual_therapy" value="yes"/>
-					<poi_additional name="health_specialty_sports_medicine_yes" tag="health_specialty:sports_medicine" value="yes"/>
-					<poi_additional name="health_specialty_podology_yes" tag="health_specialty:podology" value="yes"/>
-					<poi_additional name="health_specialty_adult_psychiatry_yes" tag="health_specialty:adult_psychiatry" value="yes"/>
-					<poi_additional name="health_specialty_palliative_medicine_yes" tag="health_specialty:palliative_medicine" value="yes"/>
-					<poi_additional name="health_specialty_depth_psychology_yes" tag="health_specialty:depth_psychology" value="yes"/>
-					<poi_additional name="health_specialty_behavior_yes" tag="health_specialty:behavior" value="yes"/>
-					<poi_additional name="health_specialty_vaccination_yes" tag="health_specialty:vaccination" value="yes" icon="vaccination"/>
+				<poi_additional_category name="healthcare_speciality">
+					<poi_additional name="healthcare_speciality_addiction" tag="healthcare:speciality" value="addiction"/>
+					<poi_additional name="healthcare_speciality_allergology" tag="healthcare:speciality" value="allergology"/>
+					<poi_additional name="healthcare_speciality_anaesthetics" tag="healthcare:speciality" value="anaesthetics"/>
+					<poi_additional name="healthcare_speciality_audiology" tag="healthcare:speciality" value="audiology"/>
+					<poi_additional name="healthcare_speciality_autism" tag="healthcare:speciality" value="autism"/>
+					<poi_additional name="healthcare_speciality_cardiac_surgery" tag="healthcare:speciality" value="cardiac_surgery"/>
+					<poi_additional name="healthcare_speciality_cardiology" tag="healthcare:speciality" value="cardiology"/>
+					<poi_additional name="healthcare_speciality_chronic" tag="healthcare:speciality" value="chronic"/>
+					<poi_additional name="healthcare_speciality_community" tag="healthcare:speciality" value="community"/>
+					<poi_additional name="healthcare_speciality_cosmetic" tag="healthcare:speciality" value="cosmetic"/>
+					<poi_additional name="healthcare_speciality_covid19" tag="healthcare:speciality" value="covid19"/>
+					<poi_additional name="healthcare_speciality_dental_oral_maxillo_facial_surgery" tag="healthcare:speciality" value="dental_oral_maxillo_facial_surgery"/>
+					<poi_additional name="healthcare_speciality_denturist" tag="healthcare:speciality" value="denturist"/>
+					<poi_additional name="healthcare_speciality_dermatology" tag="healthcare:speciality" value="dermatology"/>
+					<poi_additional name="healthcare_speciality_dermatovenereology" tag="healthcare:speciality" value="dermatovenereology"/>
+					<poi_additional name="healthcare_speciality_diabetology" tag="healthcare:speciality" value="diabetology"/>
+					<poi_additional name="healthcare_speciality_diagnostic_radiology" tag="healthcare:speciality" value="diagnostic_radiology"/>
+					<poi_additional name="healthcare_speciality_dialysis" tag="healthcare:speciality" value="dialysis"/>
+					<poi_additional name="healthcare_speciality_emergency" tag="healthcare:speciality" value="emergency" top="true"/>
+					<poi_additional name="healthcare_speciality_endocrinology" tag="healthcare:speciality" value="endocrinology"/>
+					<poi_additional name="healthcare_speciality_endodontics" tag="healthcare:speciality" value="endodontics"/>
+					<poi_additional name="healthcare_speciality_family_medicine" tag="healthcare:speciality" value="family_medicine"/>
+					<poi_additional name="healthcare_speciality_first_aid_training" tag="healthcare:speciality" value="first_aid_training"/>
+					<poi_additional name="healthcare_speciality_gastroenterology" tag="healthcare:speciality" value="gastroenterology"/>
+					<poi_additional name="healthcare_speciality_general" tag="healthcare:speciality" value="general"/>
+					<poi_additional name="healthcare_speciality_geriatrics" tag="healthcare:speciality" value="geriatrics"/>
+					<poi_additional name="healthcare_speciality_gynaecology" tag="healthcare:speciality" value="gynaecology" top="true"/>
+					<poi_additional name="healthcare_speciality_haematology" tag="healthcare:speciality" value="haematology"/>
+					<poi_additional name="healthcare_speciality_implantology" tag="healthcare:speciality" value="implantology"/>
+					<poi_additional name="healthcare_speciality_infectious_diseases" tag="healthcare:speciality" value="infectious_diseases"/>
+					<poi_additional name="healthcare_speciality_intensive" tag="healthcare:speciality" value="intensive"/>
+					<poi_additional name="healthcare_speciality_internal" tag="healthcare:speciality" value="internal"/>
+					<poi_additional name="healthcare_speciality_kinesitherapy" tag="healthcare:speciality" value="kinesitherapy"/>
+					<poi_additional name="healthcare_speciality_manual_therapy" tag="healthcare:speciality" value="manual_therapy"/>
+					<poi_additional name="healthcare_speciality_massage_therapy" tag="healthcare:speciality" value="massage_therapy"/>
+					<poi_additional name="healthcare_speciality_maternity" tag="healthcare:speciality" value="maternity"/>
+					<poi_additional name="healthcare_speciality_maxillofacial_surgery" tag="healthcare:speciality" value="maxillofacial_surgery"/>
+					<poi_additional name="healthcare_speciality_microbiology" tag="healthcare:speciality" value="microbiology"/>
+					<poi_additional name="healthcare_speciality_neonatology" tag="healthcare:speciality" value="neonatology"/>
+					<poi_additional name="healthcare_speciality_nephrology" tag="healthcare:speciality" value="nephrology"/>
+					<poi_additional name="healthcare_speciality_neurology" tag="healthcare:speciality" value="neurology"/>
+					<poi_additional name="healthcare_speciality_neuropsychiatry" tag="healthcare:speciality" value="neuropsychiatry"/>
+					<poi_additional name="healthcare_speciality_neurosurgery" tag="healthcare:speciality" value="neurosurgery"/>
+					<poi_additional name="healthcare_speciality_nuclear_medicine" tag="healthcare:speciality" value="nuclear_medicine"/>
+					<poi_additional name="healthcare_speciality_nutrition" tag="healthcare:speciality" value="nutrition"/>
+					<poi_additional name="healthcare_speciality_obstetrics_antenatal" tag="healthcare:speciality" value="obstetrics:antenatal"/>
+					<poi_additional name="healthcare_speciality_obstetrics_caesarean_section" tag="healthcare:speciality" value="obstetrics:caesarean_section"/>
+					<poi_additional name="healthcare_speciality_obstetrics_postnatal" tag="healthcare:speciality" value="obstetrics:postnatal"/>
+					<poi_additional name="healthcare_speciality_obstetrics" tag="healthcare:speciality" value="obstetrics"/>
+					<poi_additional name="healthcare_speciality_occupational" tag="healthcare:speciality" value="occupational_therapy"/>
+					<poi_additional name="healthcare_speciality_oncology" tag="healthcare:speciality" value="oncology"/>
+					<poi_additional name="healthcare_speciality_ophthalmology" tag="healthcare:speciality" value="ophthalmology" top="true"/>
+					<poi_additional name="healthcare_speciality_optometry" tag="healthcare:speciality" value="optometry"/>
+					<poi_additional name="healthcare_speciality_orthodontics" tag="healthcare:speciality" value="orthodontics"/>
+					<poi_additional name="healthcare_speciality_orthopaedics" tag="healthcare:speciality" value="orthopaedics"/>
+					<poi_additional name="healthcare_speciality_otolaryngology" tag="healthcare:speciality" value="otolaryngology"/>
+					<poi_additional name="healthcare_speciality_otorhinolaryngology" tag="healthcare:speciality" value="otorhinolaryngology"/>
+					<poi_additional name="healthcare_speciality_paediatric_dentistry" tag="healthcare:speciality" value="paediatric_dentistry"/>
+					<poi_additional name="healthcare_speciality_paediatrics" tag="healthcare:speciality" value="paediatrics" top="true"/>
+					<poi_additional name="healthcare_speciality_paediatric_surgery" tag="healthcare:speciality" value="paediatric_surgery"/>
+					<poi_additional name="healthcare_speciality_pain_control" tag="healthcare:speciality" value="pain_control"/>
+					<poi_additional name="healthcare_speciality_palliative_medicine" tag="healthcare:speciality" value="palliative_medicine"/>
+					<poi_additional name="healthcare_speciality_palliative" tag="healthcare:speciality" value="palliative"/>
+					<poi_additional name="healthcare_speciality_pathology" tag="healthcare:speciality" value="pathology"/>
+					<poi_additional name="healthcare_speciality_pediatric" tag="healthcare:speciality" value="pediatric"/>
+					<poi_additional name="healthcare_speciality_pedorthist" tag="healthcare:speciality" value="pedorthist"/>
+					<poi_additional name="healthcare_speciality_periodontics" tag="healthcare:speciality" value="periodontics"/>
+					<poi_additional name="healthcare_speciality_pharmacology" tag="healthcare:speciality" value="pharmacology"/>
+					<poi_additional name="healthcare_speciality_physiatry" tag="healthcare:speciality" value="physiatry"/>
+					<poi_additional name="healthcare_speciality_physical_therapy" tag="healthcare:speciality" value="physical_therapy"/>
+					<poi_additional name="healthcare_speciality_physiotherapy" tag="healthcare:speciality" value="physiotherapy"/>
+					<poi_additional name="healthcare_speciality_plastic_surgery" tag="healthcare:speciality" value="plastic_surgery"/>
+					<poi_additional name="healthcare_speciality_podiatry" tag="healthcare:speciality" value="podiatry"/>
+					<poi_additional name="healthcare_speciality_primary_care" tag="healthcare:speciality" value="primary_care"/>
+					<poi_additional name="healthcare_speciality_proctology" tag="healthcare:speciality" value="proctology"/>
+					<poi_additional name="healthcare_speciality_psychiatry" tag="healthcare:speciality" value="psychiatry" top="true"/>
+					<poi_additional name="healthcare_speciality_psychology" tag="healthcare:speciality" value="psychology"/>
+					<poi_additional name="healthcare_speciality_pulmonology" tag="healthcare:speciality" value="pulmonology"/>
+					<poi_additional name="healthcare_speciality_radiology" tag="healthcare:speciality" value="radiology"/>
+					<poi_additional name="healthcare_speciality_radiotherapy" tag="healthcare:speciality" value="radiotherapy"/>
+					<poi_additional name="healthcare_speciality_rehabilitation" tag="healthcare:speciality" value="rehabilitation"/>
+					<poi_additional name="healthcare_speciality_rheumatology" tag="healthcare:speciality" value="rheumatology"/>
+					<poi_additional name="healthcare_speciality_sleep" tag="healthcare:speciality" value="sleep"/>
+					<poi_additional name="healthcare_speciality_social_paediatrics" tag="healthcare:speciality" value="social_paediatrics"/>
+					<poi_additional name="healthcare_speciality_speech_therapy" tag="healthcare:speciality" value="speech_therapy"/>
+					<poi_additional name="healthcare_speciality_sports" tag="healthcare:speciality" value="sports"/>
+					<poi_additional name="healthcare_speciality_stomatology" tag="healthcare:speciality" value="stomatology"/>
+					<poi_additional name="healthcare_speciality_surgery" tag="healthcare:speciality" value="surgery"/>
+					<poi_additional name="healthcare_speciality_trauma" tag="healthcare:speciality" value="traumatology"/>
+					<poi_additional name="healthcare_speciality_travel_clinic" tag="healthcare:speciality" value="travel_clinic"/>
+					<poi_additional name="healthcare_speciality_tropical_medicine" tag="healthcare:speciality" value="tropical_medicine"/>
+					<poi_additional name="healthcare_speciality_urology" tag="healthcare:speciality" value="urology"/>
+					<poi_additional name="healthcare_speciality_vascular_surgery" tag="healthcare:speciality" value="vascular_surgery"/>
+					<poi_additional name="healthcare_speciality_venereology" tag="healthcare:speciality" value="venereology"/>
+					<poi_additional name="healthcare_speciality_weight_loss" tag="healthcare:speciality" value="weight_loss"/>
+				</poi_additional_category>
+				<poi_additional_category name="healthcare_speciality_clinic">
+					<poi_additional name="healthcare_speciality_abortion" tag="healthcare:speciality" value="abortion"/>
+					<poi_additional name="healthcare_speciality_fertility" tag="healthcare:speciality" value="fertility"/>
+					<poi_additional name="healthcare_speciality_vaccination" tag="healthcare:speciality" value="vaccination" icon="vaccination"/>
+				</poi_additional_category>
+				<poi_additional_category name="healthcare_speciality_psychotherapist">
+					<poi_additional name="healthcare_speciality_adult_psychiatry" tag="healthcare:speciality" value="adult_psychiatry"/>
+					<poi_additional name="healthcare_speciality_behavior" tag="healthcare:speciality" value="behavior"/>
+					<poi_additional name="healthcare_speciality_body" tag="healthcare:speciality" value="body"/>
+					<poi_additional name="healthcare_speciality_child_psychiatry" tag="healthcare:speciality" value="child_psychiatry"/>
+					<poi_additional name="healthcare_speciality_depth" tag="healthcare:speciality" value="depth"/>
+					<poi_additional name="healthcare_speciality_humanistic" tag="healthcare:speciality" value="humanistic"/>
+					<poi_additional name="healthcare_speciality_sophrologist" tag="healthcare:speciality" value="sophrologist"/>
+					<poi_additional name="healthcare_speciality_systemic" tag="healthcare:speciality" value="systemic"/>
+				</poi_additional_category>
+				<poi_additional_category name="healthcare_speciality_laboratory">
+					<poi_additional name="healthcare_speciality_biochemistry" tag="healthcare:speciality" value="biochemistry"/>
+					<poi_additional name="healthcare_speciality_biology" tag="healthcare:speciality" value="biology"/>
+					<poi_additional name="healthcare_speciality_blood_check" tag="healthcare:speciality" value="blood_check"/>
+					<poi_additional name="healthcare_speciality_clinical_pathology" tag="healthcare:speciality" value="clinical_pathology"/>
 				</poi_additional_category>
 				<poi_additional_category name="medical_system">
 					<poi_additional name="medical_system_western_yes" tag="medical_system:western" value="yes" top="true"/>
@@ -3207,6 +3304,7 @@
 			<poi_type name="accountant" tag="office" value="accountant"/>
 			<poi_type name="employment_agency" tag="office" value="employment_agency"/>
 			<poi_type name="research" tag="office" value="research"/>
+			<poi_type name="engineer" tag="office" value="engineer"/>
 			<poi_type name="it" tag="office" value="it"/>
 			<poi_type name="newspaper" tag="office" value="newspaper"/>
 			<poi_type name="architect" tag="office" value="architect"/>
@@ -3219,6 +3317,7 @@
 			<poi_type name="association" tag="office" value="association" icon="cooperative"/>
 			<poi_type name="financial" tag="office" value="financial"/>
 			<poi_type name="political_party" tag="office" value="political_party"/>
+			<poi_type name="property_management" tag="office" value="property_management"/>
 			<poi_type name="notary" tag="office" value="notary"/>
 			<poi_type name="foundation" tag="office" value="foundation"/>
 			<poi_type name="tax_advisor" tag="office" value="tax_advisor"/>
@@ -3366,7 +3465,9 @@
 			<poi_type name="equestrian" tag="sport" value="equestrian"/>
 			<poi_type name="fencing" tag="sport" value="fencing"/>
 			<poi_type name="field_hockey" tag="sport" value="field_hockey"/>
+			<poi_type name="hang_gliding" tag="sport" value="hang_gliding"/>
 			<poi_type name="golf" tag="sport" value="golf"/>
+			<poi_type name="disc_golf" tag="sport" value="disc_golf"/>
 			<poi_type name="gymnastics" tag="sport" value="gymnastics"/>
 			<poi_type name="handball" tag="sport" value="handball"/>
 			<poi_type name="horseshoes" tag="sport" value="horseshoes"/>
@@ -3442,7 +3543,6 @@
 			<poi_type name="badminton" tag="sport" value="badminton"/>
 			<poi_type name="jiu_jitsu" tag="sport" value="jiu-jitsu"/>
 			<poi_type name="judo" tag="sport" value="judo"/>
-			<poi_type name="disc_golf" tag="sport" value="disc_golf"/>
 			<poi_type name="futsal" tag="sport" value="futsal"/>
 			<poi_type name="rc_car" tag="sport" value="rc_car"/>
 			<poi_type name="sumo" tag="sport" value="sumo"/>
@@ -3646,9 +3746,7 @@
 					</poi_additional_category>
 				</poi_type>
 				<poi_type name="cabin" tag="tourism" value="cabin" excluded_poi_additional_category="payment_type"/>
-				<poi_type name="lean_to" tag="tourism" value="lean_to" excluded_poi_additional_category="payment_type,opening_hours"/>
 				<poi_type name="hunting_lodge" tag="tourism" value="hunting_lodge" excluded_poi_additional_category="payment_type,opening_hours"/>
-				<poi_type name="refugee_site" tag="amenity" value="refugee_site"/>
 			</poi_filter>
 			<poi_type name="place_of_worship" tag="amenity" value="place_of_worship" excluded_poi_additional_category="internet_access_type,payment_type,fee">
 				<poi_additional_category name="religion_type" icon="religion christian">
@@ -3826,7 +3924,16 @@
 				<poi_additional name="openfire_yes" tag="openfire" value="yes"/>
 				<poi_additional name="group_only_yes" tag="group_only" value="yes"/>
 				<poi_additional name="sanitary_dump_station_yes" tag="sanitary_dump_station" value="yes"/>
-				<poi_additional name="impromptu_yes" tag="impromptu" value="yes"/>
+				<poi_additional_category name="impromptu">
+					<poi_additional name="impromptu_yes" tag="impromptu" value="yes"/>
+					<poi_additional name="impromptu_no" tag="impromptu" value="no"/>
+				</poi_additional_category>
+				<poi_additional_category name="camp_site_type">
+					<poi_additional name="camp_site_basic" tag="camp_site" value="basic"/>
+					<poi_additional name="camp_site_standard" tag="camp_site" value="standard"/>
+					<poi_additional name="camp_site_serviced" tag="camp_site" value="serviced"/>
+					<poi_additional name="camp_site_deluxe" tag="camp_site" value="deluxe"/>
+				</poi_additional_category>
 <!--				<poi_additional_category name="camp_type">
 					<poi_additional name="camp_type_non_designated" tag="camp_type" value="non_designated"/>
 					<poi_additional name="camp_type_supplementary" tag="camp_type" value="supplementary"/>
@@ -3840,6 +3947,13 @@
 				<poi_additional_category name="fridge_filter">
 					<poi_additional name="fridge_yes" tag="fridge" value="yes"/>
 					<poi_additional name="fridge_no" tag="fridge" value="no"/>
+				</poi_additional_category>
+				<poi_additional_category name="reservation">
+					<poi_additional name="reservation_required" tag="reservation" value="required"/>
+					<poi_additional name="reservation_recommended" tag="reservation" value="recommended"/>
+					<poi_additional name="reservation_yes" tag="reservation" value="yes"/>
+					<poi_additional name="reservation_no" tag="reservation" value="no"/>
+					<poi_additional name="reservation_members_only" tag="reservation" value="members_only"/>
 				</poi_additional_category>
 			</poi_type>
 			<poi_type name="camp_pitch" tag="tourism" value="camp_pitch"/>
@@ -3911,7 +4025,7 @@
 		</poi_category>
 		<poi_category name="entertainment" default_tag="amenity" top="true">
 			<poi_filter name="club">
-				<poi_type name="nightclub" tag="amenity" value="nightclub" poi_additional_category="smoking"/>
+				<poi_type name="nightclub" tag="amenity" value="nightclub" poi_additional_category="smoking,live_music"/>
 				<poi_type name="stripclub" tag="amenity" value="stripclub" poi_additional_category="smoking"/>
 				<poi_type name="club_art" tag="club" value="art"/>
 				<poi_type name="club_amateur_radio" tag="club" value="amateur_radio"/>
@@ -3988,12 +4102,12 @@
 				<poi_additional name="piste_status_closed" tag="piste:status" value="closed"/>
 			</poi_filter>
 			<poi_reference name="library"/>
-			<poi_type name="arts_centre" tag="amenity" value="arts_centre" excluded_poi_additional_category="fee,payment_type"/>
+			<poi_type name="arts_centre" tag="amenity" value="arts_centre" excluded_poi_additional_category="fee,payment_type" poi_additional_category="live_music"/>
 			<poi_type name="cinema" tag="amenity" value="cinema" poi_additional_category="drive_in" excluded_poi_additional_category="fee,payment_type"/>
 			<poi_type name="casino" tag="amenity" value="casino" excluded_poi_additional_category="fee,payment_type"/>
 			<poi_type name="planetarium" tag="amenity" value="planetarium"/>
 			<poi_type name="community_centre" tag="amenity" value="community_centre" excluded_poi_additional_category="fee,payment_type"/>
-			<poi_type name="social_centre" tag="amenity" value="social_centre" excluded_poi_additional_category="fee,payment_type"/>
+			<poi_type name="social_centre" tag="amenity" value="social_centre" excluded_poi_additional_category="fee,payment_type" poi_additional_category="live_music"/>
 			<poi_type name="conference_centre" tag="amenity" value="conference_centre"/>
 			<poi_type name="public_bookcase" tag="amenity" value="public_bookcase" excluded_poi_additional_category="fee,payment_type,internet_access_type,opening_hours">
 				<poi_additional name="public_bookcase_type_phone_box" tag="public_bookcase:type" value="phone_box"/>
@@ -4003,8 +4117,9 @@
 				<poi_additional name="public_bookcase_type_shelf" tag="public_bookcase:type" value="shelf"/>
 			</poi_type>
 			<poi_type name="toy_library" tag="amenity" value="toy_library"/>
+			<poi_type name="photo_booth" tag="amenity" value="photo_booth"/>
 			<poi_type name="give_box" tag="amenity" value="give_box" excluded_poi_additional_category="fee,payment_type,internet_access_type,opening_hours"/>
-			<poi_type name="theatre" tag="amenity" value="theatre" excluded_poi_additional_category="fee,payment_type,internet_access_type">
+			<poi_type name="theatre" tag="amenity" value="theatre" excluded_poi_additional_category="fee,payment_type,internet_access_type" poi_additional_category="live_music">
 				<poi_additional_category name="theatre_genre">
 					<poi_additional name="theatre_genre_circus" tag="theatre:genre" value="circus" top="true"/>
 					<poi_additional name="theatre_genre_philharmonic" tag="theatre:genre" value="philharmonic" top="true"/>
@@ -4021,11 +4136,12 @@
 				</poi_additional_category>
 			</poi_type>
 			<poi_type name="bandstand" tag="leisure" value="bandstand" excluded_poi_additional_category="payment_type,fee,internet_access_type,wheelchair_accessibility,opening_hours"/>
+			<poi_type name="music_venue" tag="amenity" value="music_venue"/>
 			<poi_reference name="museum"/>
-			<poi_type name="gallery" tag="tourism" value="gallery" excluded_poi_additional_category="payment_type"/>
-			<poi_type name="dance_floor" tag="leisure" value="dance" excluded_poi_additional_category="payment_type"/>
+			<poi_type name="gallery" tag="tourism" value="gallery"/>
+			<poi_type name="dance_floor" tag="leisure" value="dance"/>
 			<poi_type name="stands" tag="leisure" value="bleachers" excluded_poi_additional_category="payment_type"/>
-			<poi_type name="events_venue" tag="amenity" value="events_venue" excluded_poi_additional_category="payment_type"/>
+			<poi_type name="events_venue" tag="amenity" value="events_venue"/>
 			<poi_reference name="zoo"/>
 			<poi_reference name="beach_resort"/>
 			<poi_type name="swimming_area" tag="leisure" value="swimming_area" icon="swimming_pool"/>
@@ -4034,7 +4150,7 @@
 			<poi_type name="hunting_stand" tag="amenity" value="hunting_stand" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,opening_hours"/>
 			<poi_type name="feeding_place" tag="amenity" value="feeding_place" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,opening_hours"/>
 			<poi_type name="harbour" tag="harbour" value="yes" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,opening_hours"/>
-			<poi_type name="marina" tag="leisure" value="marina" poi_additional_category="toilets" excluded_poi_additional_category="payment_type"/>
+			<poi_type name="marina" tag="leisure" value="marina" poi_additional_category="toilets"/>
 			<poi_reference name="slipway"/>
 			<poi_type name="miniature_golf" tag="leisure" value="miniature_golf" excluded_poi_additional_category="payment_type,fee,opening_hours"/>
 			<poi_type name="bowling_alley" tag="leisure" value="bowling_alley" icon="sport_10pin"/>
@@ -4129,7 +4245,7 @@
 		</poi_category>
 		<poi_category name="sustenance" default_tag="amenity" top="true" excluded_poi_additional_category="fee">
 			<poi_filter name="cafe_and_restaurant" top="true">
-				<poi_type name="cafe" tag="amenity" value="cafe" poi_additional_category="takeaway,diet,organic,coffee_filter,changing_table_filter">
+				<poi_type name="cafe" tag="amenity" value="cafe" poi_additional_category="takeaway,diet,organic,coffee_filter,changing_table_filter,reservation,live_music">
 					<poi_additional_category name="dish" icon="cuisine">
 						<poi_additional name="cuisine_pizza" tag="cuisine" value="pizza" top="true"/>
 						<poi_additional name="cuisine_burger" tag="cuisine" value="burger" top="true"/>
@@ -4141,6 +4257,7 @@
 						<poi_additional name="cuisine_sushi" tag="cuisine" value="sushi" top="true"/>
 						<poi_additional name="cuisine_doner" tag="cuisine" value="doner" top="true"/>
 						<poi_additional name="cuisine_fish_and_chips" tag="cuisine" value="fish_and_chips"/>
+						<poi_additional name="cuisine_fish" tag="cuisine" value="fish"/>
 						<poi_additional name="cuisine_seafood" tag="cuisine" value="seafood"/>
 						<poi_additional name="cuisine_noodle" tag="cuisine" value="noodle"/>
 						<poi_additional name="cuisine_donut" tag="cuisine" value="donut"/>
@@ -4311,7 +4428,7 @@
 					</poi_additional_category>
 
 				</poi_type>
-				<poi_type name="restaurant" tag="amenity" value="restaurant" poi_additional_category="microbrewery,takeaway,outdoor_seating,smoking,dish,cuisine,organic,drinking_water_refill,changing_table_filter">
+				<poi_type name="restaurant" tag="amenity" value="restaurant" poi_additional_category="microbrewery,takeaway,outdoor_seating,smoking,dish,cuisine,organic,drinking_water_refill,changing_table_filter,reservation,live_music">
 					<poi_additional_category name="delivery">
 						<poi_additional name="delivery_filter_yes" tag="delivery_filter" value="yes" no_edit="true" filter_only="true"/>
 					</poi_additional_category>
@@ -4319,13 +4436,13 @@
 						<poi_additional name="drive_in_yes" tag="drive_in" value="yes"/>
 					</poi_additional_category>
 					<poi_additional_category name="diet">
-						<poi_additional name="diet_vegetarian_filter_yes" tag="diet_vegetarian_filter" value="yes" no_edit="true" filter_only="true" top="true"/>
+						<poi_additional name="diet_vegetarian_filter_yes" tag="diet_vegetarian_filter" value="yes" no_edit="true" top="true"/>
 						<poi_additional name="diet_vegetarian_few" tag="diet:vegetarian" value="few"/>
-						<poi_additional name="diet_vegan_filter_yes" tag="diet_vegan_filter" value="yes" no_edit="true" filter_only="true" top="true"/>
-						<poi_additional name="diet_gluten_free_filter_yes" tag="diet_gluten_free_filter" value="yes" no_edit="true" filter_only="true"/>
-						<poi_additional name="diet_kosher_filter_yes" tag="diet_kosher_filter" value="yes" no_edit="true" filter_only="true" top="true"/>
-						<poi_additional name="diet_halal_filter_yes" tag="diet_halal_filter" value="yes" no_edit="true" filter_only="true" top="true"/>
-						<poi_additional name="diet_lactose_free_filter_yes" tag="diet_lactose_free_filter" value="yes" no_edit="true" filter_only="true"/>
+						<poi_additional name="diet_vegan_filter_yes" tag="diet_vegan_filter" value="yes" no_edit="true"  top="true"/>
+						<poi_additional name="diet_gluten_free_filter_yes" tag="diet_gluten_free_filter" value="yes" no_edit="true"/>
+						<poi_additional name="diet_kosher_filter_yes" tag="diet_kosher_filter" value="yes" no_edit="true" top="true"/>
+						<poi_additional name="diet_halal_filter_yes" tag="diet_halal_filter" value="yes" no_edit="true" top="true"/>
+						<poi_additional name="diet_lactose_free_filter_yes" tag="diet_lactose_free_filter" value="yes" no_edit="true"/>
 						<poi_additional name="diet_pescetarian_yes" tag="diet:pescetarian" value="yes"/>
 					</poi_additional_category>
 					<poi_additional name="drink_wine_served" tag="drink:wine" value="served"/>
@@ -4352,8 +4469,11 @@
 				<poi_additional_category name="cocktails">
 					<poi_additional name="cocktails_yes" tag="cocktails" value="yes"/>
 				</poi_additional_category>
+				<poi_additional_category name="live_music" icon="music">
+					<poi_additional name="live_music_yes" tag="live_music" value="yes" icon="music"/>
+				</poi_additional_category>
 			</poi_type>
-			<poi_type name="pub" tag="amenity" value="pub" poi_additional_category="takeaway,outdoor_seating,smoking,dish,cuisine,drinking_water_refill,ice_cream_filter">
+			<poi_type name="pub" tag="amenity" value="pub" poi_additional_category="takeaway,outdoor_seating,smoking,dish,cuisine,drinking_water_refill,ice_cream_filter,live_music">
 				<poi_additional_category name="microbrewery" icon="craft_brewery">
 					<poi_additional name="microbrewery_yes" tag="microbrewery" value="yes"/>
 				</poi_additional_category>
@@ -4558,6 +4678,7 @@
 				<poi_additional name="handwashing_creme_no" tag="handwashing:creme" value="no"/>
 			</poi_type>
 			<poi_type name="shower" tag="amenity" value="shower" excluded_poi_additional_category="payment_type,internet_access_type"/>
+			<poi_type name="dressing_room" tag="amenity" value="dressing_room" excluded_poi_additional_category="payment_type,internet_access_type"/>
 			<poi_type name="public_bath" tag="amenity" value="public_bath">
 				<poi_additional_category name="bath_type">
 					<poi_additional name="bath_type_hot_spring" tag="bath:type" value="hot_spring"/>
@@ -4726,6 +4847,7 @@
 					<poi_additional name="shelter_type_rock_shelter" tag="shelter_type" value="rock_shelter"/>
 					<poi_additional name="shelter_type_sun_shelter" tag="shelter_type" value="sun_shelter"/>
 					<poi_additional name="shelter_type_field_shelter" tag="shelter_type" value="field_shelter"/>
+					<poi_additional name="osmand_not_pt_shelter_yes" tag="osmand_not_pt_shelter" value="yes"/>
 				</poi_additional_category>
 				<poi_additional_category name="fireplace">
 					<poi_additional name="fireplace_yes" tag="fireplace" value="yes"/>
@@ -4765,10 +4887,17 @@
 				<poi_additional name="animal_keeping_type_open_stable" tag="animal_keeping:type" value="open_stable"/>
 			</poi_type>
 			<poi_type name="lavoir" tag="amenity" value="lavoir"/>
+			<poi_type name="refugee_site" tag="amenity" value="refugee_site"/>
 		</poi_category>
 		<poi_category name="finance" default_tag="amenity" top="true" excluded_poi_additional_category="fee">
 			<poi_type name="bank" tag="amenity" value="bank" poi_additional_category="drive_through"/>
-			<poi_type name="atm" tag="amenity_atm" value="atm" poi_additional_category="drive_through,cash_withdrawal_bank_card" edit_tag="amenity" edit_value="atm" alt_edit_tag="atm" alt_edit_value="yes"/>
+			<poi_type name="atm" tag="amenity_atm" value="atm" poi_additional_category="drive_through,cash_withdrawal_bank_card" edit_tag="amenity" edit_value="atm" alt_edit_tag="atm" alt_edit_value="yes">
+				<poi_additional_category name="cash_in">
+					<poi_additional name="cash_in_yes" tag="cash_in" value="yes"/>
+					<poi_additional name="cash_in_no" tag="cash_in" value="no"/>
+					<poi_additional name="cash_in_customers" tag="cash_in" value="customers"/>
+				</poi_additional_category>
+			</poi_type>
 			<poi_type name="payment_terminal" tag="amenity" value="payment_terminal"/>
 			<poi_type name="payment_centre" tag="amenity" value="payment_centre"/>
 			<poi_type name="money_lender" tag="shop" value="money_lender"/>
@@ -4931,6 +5060,8 @@
 			<poi_type name="anthill" tag="natural" value="anthill"/>
 			<poi_type name="termite_mound" tag="natural" value="termite_mound"/>
 			<poi_type name="nature_reserve" tag="leisure" value="nature_reserve" no_edit="true"/>
+			<poi_type name="aboriginal_lands" tag="boundary" value="aboriginal_lands" no_edit="true"/>
+			<poi_type name="border_zone" tag="boundary" value="border_zone" no_edit="true"/>
 			<poi_type name="protected_area" tag="boundary" value="protected_area" no_edit="true">
 				<poi_additional name="protection_title" tag="protection_title" type="text"/>
 				<poi_additional name="protection_object_historic" tag="protection_object" value="historic"/>
@@ -5197,7 +5328,23 @@
 				</poi_additional_category>
 			</poi_type>
 			<poi_type name="route_article" tag="route_type" value="article"/>
+
+			<!-- OBF-GPX relation route types (convertFromOsmGPXTag) -->
+			<!-- Name acts as icon not as activity (refers to the icon) -->
+			<poi_type tag="route_type" value="water" name="activities_kayak"/>
+			<poi_type tag="route_type" value="riding" name="activities_horse"/>
+			<poi_type tag="route_type" value="winter" name="activities_skiing"/>
+			<poi_type tag="route_type" value="cycling" name="activities_bicycle"/>
+			<poi_type tag="route_type" value="hiking" name="activities_trekking"/>
+			<poi_type tag="route_type" value="walking" name="activities_pedestrian"/>
+			<poi_type tag="route_type" value="snowmobile" name="activities_snowmobile"/>
+			<poi_type tag="route_type" value="mountainbike" name="activities_mountain_bike"/>
+			<poi_type tag="route_type" value="inline_skates" name="activities_inline_skates"/>
+			<poi_type tag="route_type" value="running" name="activities_running"/> <!-- TODO copy icon from running -->
+			<poi_type tag="route_type" value="fitness" name="activities_fitness"/> <!-- TODO copy icon from fitness_station -->
+
 			<poi_type name="route_track" tag="route_type" value="track">
+				<!-- OBF-GPX track: basic tags -->
 				<poi_additional name="user" tag="user" type="text"/>
 				<poi_additional name="date" tag="date" type="text"/>
 				<poi_additional name="tag_road_road" tag="tag_road" value="road"/>
@@ -5214,6 +5361,7 @@
 				<poi_additional name="avg_speed" tag="avg_speed" type="text"/>
 				<poi_additional name="max_speed" tag="max_speed" type="text"/>
 				<poi_additional name="min_speed" tag="min_speed" type="text"/>
+				<poi_additional name="route_radius" tag="route_radius" type="text"/>
 				<poi_additional_category name="route_activity_type">
 					<poi_additional name="route_activity_type_water" tag="route_activity_type" value="water"/>
 					<poi_additional name="route_activity_type_winter" tag="route_activity_type" value="winter"/>
@@ -5229,9 +5377,35 @@
 					<poi_additional name="route_activity_type_motorbike" tag="route_activity_type" value="motorbike"/>
 					<poi_additional name="route_activity_type_car" tag="route_activity_type" value="car"/>
 				</poi_additional_category>
-				<poi_additional name="route_radius" tag="route_radius" type="text"/>
+				<!-- OBF-GPX track: extensions tags (prefixed with gpx_) -->
+				<poi_additional name="gpx_show_arrows" tag="gpx_show_arrows" type="text"/>
+				<poi_additional name="gpx_show_start_finish" tag="gpx_show_start_finish" type="text"/>
+				<poi_additional name="gpx_split_interval" tag="gpx_split_interval" type="text"/>
+				<poi_additional name="gpx_split_type" tag="gpx_split_type" type="text"/>
+				<poi_additional name="gpx_line_3d_visualization_by_type" tag="gpx_line_3d_visualization_by_type" type="text"/>
+				<poi_additional name="gpx_line_3d_visualization_wall_color_type" tag="gpx_line_3d_visualization_wall_color_type" type="text"/>
+				<poi_additional name="gpx_line_3d_visualization_position_type" tag="gpx_line_3d_visualization_position_type" type="text"/>
+				<poi_additional name="gpx_vertical_exaggeration_scale" tag="gpx_vertical_exaggeration_scale" type="text"/>
+				<poi_additional name="gpx_elevation_meters" tag="gpx_elevation_meters" type="text"/>
+				<poi_additional name="gpx_color_palette" tag="gpx_color_palette" type="text"/>
+				<poi_additional name="gpx_coloring_type" tag="gpx_coloring_type" type="text"/>
+				<poi_additional name="gpx_color" tag="gpx_color" type="text"/>
+				<poi_additional name="gpx_width" tag="gpx_width" type="text"/>
+				<!-- OBF-GPX track: osmand:points_groups list by tags -->
+				<poi_additional name="points_groups_names" tag="points_groups_names" type="text"/>
+				<poi_additional name="points_groups_icons" tag="points_groups_icons" type="text"/>
+				<poi_additional name="points_groups_colors" tag="points_groups_colors" type="text"/>
+				<poi_additional name="points_groups_backgrounds" tag="points_groups_backgrounds" type="text"/>
 			</poi_type>
-			<poi_type name="route_track_point" tag="route_type" value="track_point"/>
+			<poi_type name="route_track_point" tag="route_type" value="track_point">
+				<!-- OBF-GPX point: icon extensions -->
+				<poi_additional name="gpx_bg" tag="gpx_bg" type="text"/>
+				<poi_additional name="gpx_icon" tag="gpx_icon" type="text"/>
+				<poi_additional name="points_groups_category" tag="points_groups_category" type="text"/> <!-- GPX <type> -->
+			</poi_type>
+			<poi_additional name="color" tag="colour" type="text"/> <!-- global for "routes" category -->
+			<!-- OBF-GPX track (relation id) / points (node id) -->
+			<poi_additional name="osm_id" tag="osm_id" type="text"/>
 		</poi_category>
 		<poi_category name="user_defined_other" default_tag="amenity" no_edit="true" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,internet_access_type,opening_hours">
 			<!-- Add additional combination for UK postcode POI files-->
@@ -5259,6 +5433,10 @@
 			<poi_type name="hazard_avalanche" tag="hazard" value="avalanche"/>
 			<poi_type name="hazard_slippery_road" tag="hazard" value="slippery_road"/>
 			<poi_type name="hazard_flood" tag="hazard" value="flood"/>
+		</poi_category>
+
+		<poi_category name="access_private">
+			<poi_type name="osmand_access_main_tag" tag="osmand_access_main" value="tag" icon="osmand_access_private_poi" no_edit="true"/>
 		</poi_category>
 
 		<poi_type name="bollard" tag="barrier" value="bollard" no_edit="true"/>
@@ -5308,5 +5486,7 @@
 
 <!--		<poi_type name="deadlock" tag="noexit" value="yes" no_edit="true"/>-->
 		<poi_type name="osm_note_yes" tag="osm_note" value="yes" no_edit="true"/>
+		<poi_type name="osmand_foot_prohibited_tunnel" tag="osmand_foot_prohibited_tunnel" value="yes" icon="osmand_tunnel" no_edit="true"/>
+		<poi_type name="osmand_bicycle_prohibited_tunnel" tag="osmand_bicycle_prohibited_tunnel" value="yes" icon="osmand_tunnel" no_edit="true"/>
 
-	</poi_types>
+</poi_types>
