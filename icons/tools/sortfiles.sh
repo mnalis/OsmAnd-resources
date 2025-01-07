@@ -1010,6 +1010,9 @@ icon_alias hang_gliding sport_hang_gliding
 icon_alias windsurfing sport_windsurfing
 icon_alias waterskiing sport_waterskiing
 
+icon_alias climbing_route sport_climbing_route
+icon_alias climbing_route_bottom sport_climbing_route_bottom
+
 
 ## Leisure
 icon_alias leisure sport_playground
@@ -3657,3 +3660,14 @@ icon activities_running
 icon activities_horse_riding
 icon activities_diving
 icon activities_canoe
+
+#Routes
+icon_alias routes_driving activities_car
+icon_alias routes_motorcycling activities_motorcycle
+icon_alias routes_foot activities_pedestrian
+icon_alias routes_winter_sport activities_skiing
+icon_alias routes_cycling activities_bicycle
+icon_alias routes_air_sports activities_light_aircraft
+icon_alias routes_water_sport activities_kayak
+icon_alias routes_other special_route_track
+icon_alias route_track_point special_marker

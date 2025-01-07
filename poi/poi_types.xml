@@ -33,12 +33,11 @@
 	<poi_additional name="roundtrip_yes" tag="roundtrip" value="yes"/>
 	<poi_additional name="roundtrip_no" tag="roundtrip" value="no"/>
 
-	<!-- <poi_additional name="color_int" tag="color_int" type="text" lang="true" order="82"/> -->
-
 	<poi_additional name="phone" tag="phone" type="text" order="82"/>
 	<poi_additional name="mobile" tag="contact:mobile" type="text" order="82"/>
 	<poi_additional name="website" tag="contact:website" type="text" order="85"/>
 	<poi_additional name="url" tag="url" type="text" order="86" lang="true"/>
+	<poi_additional name="url_text" tag="url_text" type="text" lang="true"/>
 	<poi_additional name="email" tag="contact:email" type="text" order="84" lang="true"/>
 	<poi_additional name="fax" tag="contact:fax" type="text" order="83"/>
 	<poi_additional name="facebook" tag="contact:facebook" type="text" order="83"/>
@@ -1340,8 +1339,8 @@
 
 		<poi_category name="shop" default_tag="shop" top="true" excluded_poi_additional_category="fee,internet_access_type" poi_additional_category="bulk_purchase,self_checkout,second_hand_filter">
 			<poi_filter name="shop_food" top="true">
-				<poi_type name="convenience" tag="shop" value="convenience" poi_additional_category="organic,cash_withdrawal_bank_card,delivery,coffee_filter,ice_cream_filter,diet"/>
-				<poi_type name="supermarket" tag="shop" value="supermarket" poi_additional_category="drive_through,delivery,membership_filter,diet">
+				<poi_type name="convenience" tag="shop" value="convenience" poi_additional_category="organic,cash_withdrawal_bank_card,delivery,coffee_filter,ice_cream_filter,diet,cafe_filter"/>
+				<poi_type name="supermarket" tag="shop" value="supermarket" poi_additional_category="drive_through,delivery,membership_filter,diet,cafe_filter">
 					<poi_additional_category name="organic">
 						<poi_additional name="organic_yes" tag="organic" value="yes"/>
 						<poi_additional name="organic_only" tag="organic" value="only"/>
@@ -1367,7 +1366,7 @@
 				<poi_additional name="drink_wine_yes" tag="drink:wine" value="yes"/>
 				<poi_additional name="drink_wine_retail" tag="drink:wine" value="retail"/>
 			</poi_type>
-			<poi_type name="bakery" tag="shop" value="bakery" poi_additional_category="drive_through,organic,delivery,coffee_filter,diet">
+			<poi_type name="bakery" tag="shop" value="bakery" poi_additional_category="drive_through,organic,delivery,coffee_filter,diet,cafe_filter">
 				<poi_additional_category name="ice_cream_filter">
 					<poi_additional name="ice_cream_yes" tag="ice_cream" value="yes"/>
 				</poi_additional_category>
@@ -1386,14 +1385,14 @@
 			<poi_type name="cheese" tag="shop" value="cheese"/>
 			<poi_type name="chocolate" tag="shop" value="chocolate" poi_additional_category="diet"/>
 			<poi_type name="coffee" tag="shop" value="coffee" poi_additional_category="diet"/>
-			<poi_type name="confectionery" tag="shop" value="confectionery" poi_additional_category="diet"/>
+			<poi_type name="confectionery" tag="shop" value="confectionery" poi_additional_category="diet,cafe_filter"/>
 			<poi_type name="dairy" tag="shop" value="dairy"/>
 			<poi_type name="deli" tag="shop" value="deli" poi_additional_category="organic,diet"/>
 			<poi_type name="farm" tag="shop" value="farm" poi_additional_category="organic,diet"/>
 			<poi_type name="frozen_food" tag="shop" value="frozen_food"/>
 			<poi_type name="greengrocer" tag="shop" value="greengrocer" poi_additional_category="organic,diet"/>
 			<poi_type name="honey" tag="shop" value="honey"/>
-			<poi_type name="ice_cream" tag="amenity" value="ice_cream" poi_additional_category="outdoor_seating">
+			<poi_type name="ice_cream" tag="amenity" value="ice_cream" poi_additional_category="outdoor_seating,cafe_filter">
 				<poi_additional_category name="coffee_filter">
 					<poi_additional name="coffee_yes" tag="coffee" value="yes"/>
 					<poi_additional name="coffee_no" tag="coffee" value="no"/>
@@ -1402,7 +1401,7 @@
 			<poi_type name="mall" tag="shop" value="mall"/>
 			<poi_type name="pasta" tag="shop" value="pasta"/>
 			<poi_type name="party" tag="shop" value="party"/>
-			<poi_type name="pastry" tag="shop" value="pastry" poi_additional_category="diet"/>
+			<poi_type name="pastry" tag="shop" value="pastry" poi_additional_category="diet,cafe_filter"/>
 			<poi_type name="seafood" tag="shop" value="seafood"/>
 			<poi_type name="spices" tag="shop" value="spices"/>
 			<poi_type name="tea" tag="shop" value="tea"/>
@@ -1616,7 +1615,7 @@
 			<poi_type name="hunting" tag="shop" value="hunting"/>
 			<poi_type name="interior_decoration" tag="shop" value="interior_decoration"/>
 			<poi_type name="jewelry" tag="shop" value="jewelry"/>
-			<poi_type name="kiosk" tag="shop" value="kiosk" poi_additional_category="cash_withdrawal_bank_card,coffee_filter,ice_cream_filter,diet">
+			<poi_type name="kiosk" tag="shop" value="kiosk" poi_additional_category="cash_withdrawal_bank_card,coffee_filter,ice_cream_filter,diet,cafe_filter">
 				<poi_additional_category name="tobacco_filter">
 					<poi_additional name="tobacco_yes" tag="tobacco" value="yes"/>
 				</poi_additional_category>
@@ -1948,6 +1947,9 @@
 					</poi_additional_category>
 					<poi_additional_category name="vending_machine_fuel_filter" icon="amenity_vending_machine">
 						<poi_additional name="vending_machine_fuel" tag="vending_machine" value="fuel"/>
+					</poi_additional_category>
+					<poi_additional_category name="cafe_filter" icon="amenity_cafe">
+						<poi_additional name="cafe_yes" tag="cafe" value="yes"/>
 					</poi_additional_category>
 				</poi_type>
 				<poi_type name="aeroway_fuel" tag="aeroway" value="fuel">
@@ -3403,12 +3405,12 @@
 					<poi_additional name="climbing_bolt_anchor" tag="climbing:bolt" value="anchor"/>
 				</poi_additional_category>
 				<poi_additional_category name="climbing_bolts_filter">
-					<poi_additional name="osmand_climbing_bolts_yes" tag="osmand_climbing_bolts" value="yes"/>
-					<poi_additional name="osmand_climbing_bolts_no" tag="osmand_climbing_bolts" value="no"/>
+					<poi_additional name="osmand_climbing_bolts_yes" tag="osmand_climbing_bolts" value="yes" edit_tag="climbing:bolts" edit_value="yes"/>
+					<poi_additional name="osmand_climbing_bolts_no" tag="osmand_climbing_bolts" value="no" edit_tag="climbing:bolts" edit_value="no"/>
 				</poi_additional_category>
 				<poi_additional_category name="climbing_bolted_filter">
-					<poi_additional name="climbing_bolted_yes" tag="osmand_climbing_bolted" value="yes"/>
-					<poi_additional name="climbing_bolted_no" tag="osmand_climbing_bolted" value="no"/>
+					<poi_additional name="climbing_bolted_yes" tag="osmand_climbing_bolted" value="yes" edit_tag="climbing:bolted" edit_value="yes"/>
+					<poi_additional name="climbing_bolted_no" tag="osmand_climbing_bolted" value="no" edit_tag="climbing:bolted" edit_value="no"/>
 				</poi_additional_category>
 				<poi_additional_category name="climbing_quality">
 					<poi_additional name="climbing_quality_solid" tag="climbing:quality" value="solid"/>
@@ -3450,6 +3452,9 @@
 				<poi_additional name="climbing_grade_uiaa_max" tag="climbing:grade:uiaa:max" type="text"/>
 				<poi_additional name="climbing_grade_uiaa_mean" tag="climbing:grade:uiaa:mean" type="text"/>
 			</poi_type>
+			<poi_type name="climbing_area" tag="climbing" value="area"/>
+			<poi_type name="climbing_route" tag="climbing" value="route" poi_additional_category="climbing_style,climbing_grade_filter,climbing_bolted_filter,climbing_quality"/>
+			<poi_type name="climbing_route_bottom" tag="climbing" value="route_bottom" poi_additional_category="climbing_style,climbing_grade_filter,climbing_bolted_filter,climbing_quality"/>
 			<poi_type name="climbing_adventure" tag="sport" value="climbing_adventure"/>
 			<poi_type name="cockfighting" tag="sport" value="cockfighting"/>
 			<poi_type name="cricket" tag="sport" value="cricket"/>
@@ -4026,7 +4031,7 @@
 		</poi_category>
 		<poi_category name="entertainment" default_tag="amenity" top="true">
 			<poi_filter name="club">
-				<poi_type name="nightclub" tag="amenity" value="nightclub" poi_additional_category="smoking,live_music"/>
+				<poi_type name="nightclub" tag="amenity" value="nightclub" poi_additional_category="smoking,live_music,cafe_filter"/>
 				<poi_type name="stripclub" tag="amenity" value="stripclub" poi_additional_category="smoking"/>
 				<poi_type name="club_art" tag="club" value="art"/>
 				<poi_type name="club_amateur_radio" tag="club" value="amateur_radio"/>
@@ -4429,7 +4434,7 @@
 					</poi_additional_category>
 
 				</poi_type>
-				<poi_type name="restaurant" tag="amenity" value="restaurant" poi_additional_category="microbrewery,takeaway,outdoor_seating,smoking,dish,cuisine,organic,drinking_water_refill,changing_table_filter,reservation,live_music">
+				<poi_type name="restaurant" tag="amenity" value="restaurant" poi_additional_category="microbrewery,takeaway,outdoor_seating,smoking,dish,cuisine,organic,drinking_water_refill,changing_table_filter,reservation,live_music,cafe_filter">
 					<poi_additional_category name="delivery">
 						<poi_additional name="delivery_filter_yes" tag="delivery_filter" value="yes" no_edit="true" filter_only="true"/>
 					</poi_additional_category>
@@ -4450,7 +4455,7 @@
 				</poi_type>
 				<poi_type name="food_court" tag="amenity" value="food_court"/>
 			</poi_filter>
-			<poi_type name="fast_food" tag="amenity" value="fast_food" poi_additional_category="delivery,outdoor_seating,drive_in,smoking,diet,dish,cuisine,organic,drinking_water_refill,changing_table_filter,self_checkout">
+			<poi_type name="fast_food" tag="amenity" value="fast_food" poi_additional_category="delivery,outdoor_seating,drive_in,smoking,diet,dish,cuisine,organic,drinking_water_refill,changing_table_filter,self_checkout,cafe_filter">
 				<poi_additional_category name="drive_through">
 					<poi_additional name="drive_through_yes" tag="drive_through" value="yes"/>
 				</poi_additional_category>
@@ -4474,7 +4479,7 @@
 					<poi_additional name="live_music_yes" tag="live_music" value="yes" icon="music"/>
 				</poi_additional_category>
 			</poi_type>
-			<poi_type name="pub" tag="amenity" value="pub" poi_additional_category="takeaway,outdoor_seating,smoking,dish,cuisine,drinking_water_refill,ice_cream_filter,live_music">
+			<poi_type name="pub" tag="amenity" value="pub" poi_additional_category="takeaway,outdoor_seating,smoking,dish,cuisine,drinking_water_refill,ice_cream_filter,live_music,cafe_filter">
 				<poi_additional_category name="microbrewery" icon="craft_brewery">
 					<poi_additional name="microbrewery_yes" tag="microbrewery" value="yes"/>
 				</poi_additional_category>
@@ -5314,7 +5319,8 @@
 		</poi_category>
 
 		<poi_category name="routes" top="true" no_edit="true" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,internet_access_type,opening_hours">
-			<!-- route / point -->
+			<!-- Wikivoyage articles / points -->
+			<poi_type name="route_article" tag="route_type" value="article"/>
 			<poi_type name="route_article_point" tag="route_type" value="article_point">
 				<poi_additional_category name="route_point_category">
 					<poi_additional name="category_sleep" tag="category" value="sleep"/>
@@ -5327,28 +5333,117 @@
 					<poi_additional name="category_other" tag="category" value="other"/>
 					<poi_additional name="category_marker" tag="category" value="marker"/>
 				</poi_additional_category>
+				<poi_additional name="gpx_icon" tag="gpx_icon" type="text"/> <!-- Wikivoyage -->
 			</poi_type>
-			<poi_type name="route_article" tag="route_type" value="article"/>
 
-			<!-- OBF-GPX relation route types (convertFromOsmGPXTag) -->
-			<!-- Name acts as icon not as activity (refers to the icon) -->
-			<poi_type tag="route_type" value="water" name="activities_kayak"/>
-			<poi_type tag="route_type" value="riding" name="activities_horse"/>
-			<poi_type tag="route_type" value="winter" name="activities_skiing"/>
-			<poi_type tag="route_type" value="cycling" name="activities_bicycle"/>
-			<poi_type tag="route_type" value="hiking" name="activities_trekking"/>
-			<poi_type tag="route_type" value="walking" name="activities_pedestrian"/>
-			<poi_type tag="route_type" value="snowmobile" name="activities_snowmobile"/>
-			<poi_type tag="route_type" value="mountainbike" name="activities_mountain_bike"/>
-			<poi_type tag="route_type" value="inline_skates" name="activities_inline_skates"/>
-			<poi_type tag="route_type" value="running" name="activities_running"/> <!-- TODO copy icon from running -->
-			<poi_type tag="route_type" value="fitness" name="activities_fitness"/> <!-- TODO copy icon from fitness_station -->
+			<!-- TravelGpx points -->
+			<poi_type name="route_track_point" tag="route_type" value="track_point">
+				<poi_additional name="icon" tag="icon" type="text"/>
+				<poi_additional name="background" tag="background" type="text"/>
+				<poi_additional name="wpt_extra_tags" tag="wpt_extra_tags" type="text"/>
+				<poi_additional name="points_groups_category" tag="points_groups_category" type="text"/> <!-- GPX <wpt> <type> -->
+			</poi_type>
 
-			<poi_type name="route_track" tag="route_type" value="track">
-				<!-- OBF-GPX track: basic tags -->
+			<!-- TravelGpx top level activities as POI subcategories under Routes. route_type is generated from activity tag -->
+			<poi_type tag="route_type" value="driving" name="routes_driving">
+				<poi_additional_category name="routes_driving">
+					<poi_additional tag="route_activity_type" value="car" name="route_activity_type_car"/>
+					<poi_additional tag="route_activity_type" value="off_road" name="route_activity_type_off_road"/>
+					<poi_additional tag="route_activity_type" value="all_terrain_vehicle" name="route_activity_type_all_terrain_vehicle"/>
+					<poi_additional tag="route_activity_type" value="truck_hgv" name="route_activity_type_truck_hgv"/>
+					<poi_additional tag="route_activity_type" value="karting" name="route_activity_type_karting"/>
+				</poi_additional_category>
+			</poi_type>
+			<poi_type tag="route_type" value="motorcycling" name="routes_motorcycling">
+				<poi_additional_category name="routes_motorcycling">
+					<poi_additional tag="route_activity_type" value="adventure_motorcycling" name="route_activity_type_adventure_motorcycling"/>
+					<poi_additional tag="route_activity_type" value="enduro_motorcycling" name="route_activity_type_enduro_motorcycling"/>
+					<poi_additional tag="route_activity_type" value="motocross" name="route_activity_type_motocross"/>
+					<poi_additional tag="route_activity_type" value="off_road_motorcycling_dirt_biking" name="route_activity_type_off_road_motorcycling_dirt_biking"/>
+					<poi_additional tag="route_activity_type" value="road_motorcycling" name="route_activity_type_road_motorcycling"/>
+					<poi_additional tag="route_activity_type" value="sport_motorcycling" name="route_activity_type_sport_motorcycling"/>
+					<poi_additional tag="route_activity_type" value="touring_motorcycling" name="route_activity_type_touring_motorcycling"/>
+					<poi_additional tag="route_activity_type" value="track_racing" name="route_activity_type_track_racing"/>
+					<poi_additional tag="route_activity_type" value="motor_scooter" name="route_activity_type_motor_scooter"/>
+				</poi_additional_category>
+			</poi_type>
+			<poi_type tag="route_type" value="foot" name="routes_foot">
+				<poi_additional_category name="routes_foot">
+					<poi_additional tag="route_activity_type" value="backpacking" name="route_activity_type_backpacking"/>
+					<poi_additional tag="route_activity_type" value="hiking" name="route_activity_type_hiking"/>
+					<poi_additional tag="route_activity_type" value="hill_climbing" name="route_activity_type_hill_climbing"/>
+					<poi_additional tag="route_activity_type" value="road_running" name="route_activity_type_road_running"/>
+					<poi_additional tag="route_activity_type" value="trail_running" name="route_activity_type_trail_running"/>
+					<poi_additional tag="route_activity_type" value="trekking" name="route_activity_type_trekking"/>
+					<poi_additional tag="route_activity_type" value="walking" name="route_activity_type_walking"/>
+				</poi_additional_category>
+			</poi_type>
+			<poi_type tag="route_type" value="winter_sport" name="routes_winter_sport">
+				<poi_additional_category name="routes_winter_sport">
+					<poi_additional tag="route_activity_type" value="cross_country_skiing" name="route_activity_type_cross_country_skiing"/>
+					<poi_additional tag="route_activity_type" value="ice_skating" name="route_activity_type_ice_skating"/>
+					<poi_additional tag="route_activity_type" value="ski_touring" name="route_activity_type_ski_touring"/>
+					<poi_additional tag="route_activity_type" value="skiing" name="route_activity_type_skiing"/>
+					<poi_additional tag="route_activity_type" value="snowboarding" name="route_activity_type_snowboarding"/>
+					<poi_additional tag="route_activity_type" value="snowmobiling" name="route_activity_type_snowmobiling"/>
+					<poi_additional tag="route_activity_type" value="snowshoeing" name="route_activity_type_snowshoeing"/>
+				</poi_additional_category>
+			</poi_type>
+			<poi_type tag="route_type" value="cycling" name="routes_cycling">
+				<poi_additional_category name="routes_cycling">
+					<poi_additional tag="route_activity_type" value="e_biking" name="route_activity_type_e_biking"/>
+					<poi_additional tag="route_activity_type" value="e_mountain_bike" name="route_activity_type_e_mountain_bike"/>
+					<poi_additional tag="route_activity_type" value="gravel_biking" name="route_activity_type_gravel_biking"/>
+					<poi_additional tag="route_activity_type" value="mountain_biking" name="route_activity_type_mountain_biking"/>
+					<poi_additional tag="route_activity_type" value="road_cycling" name="route_activity_type_road_cycling"/>
+					<poi_additional tag="route_activity_type" value="touring" name="route_activity_type_touring"/>
+				</poi_additional_category>
+			</poi_type>
+			<poi_type tag="route_type" value="air_sports" name="routes_air_sports">
+				<poi_additional_category name="routes_air_sports">
+					<poi_additional tag="route_activity_type" value="aviation" name="route_activity_type_aviation"/>
+					<poi_additional tag="route_activity_type" value="drone_flying" name="route_activity_type_drone_flying"/>
+					<poi_additional tag="route_activity_type" value="gliding_sailplane" name="route_activity_type_gliding_sailplane"/>
+					<poi_additional tag="route_activity_type" value="hang_gliding" name="route_activity_type_hang_gliding"/>
+					<poi_additional tag="route_activity_type" value="hot_air_ballooning" name="route_activity_type_hot_air_ballooning"/>
+					<poi_additional tag="route_activity_type" value="parachuting_skydiving" name="route_activity_type_parachuting_skydiving"/>
+					<poi_additional tag="route_activity_type" value="paragliding" name="route_activity_type_paragliding"/>
+					<poi_additional tag="route_activity_type" value="powered_paragliding_paramotoring" name="route_activity_type_powered_paragliding_paramotoring"/>
+					<poi_additional tag="route_activity_type" value="ultralight_aviation" name="route_activity_type_ultralight_aviation"/>
+				</poi_additional_category>
+			</poi_type>
+			<poi_type tag="route_type" value="water_sport" name="routes_water_sport">
+				<poi_additional_category name="routes_water_sport">
+					<poi_additional tag="route_activity_type" value="canoe" name="route_activity_type_canoe"/>
+					<poi_additional tag="route_activity_type" value="diving" name="route_activity_type_diving"/>
+					<poi_additional tag="route_activity_type" value="scuba_diving" name="route_activity_type_scuba_diving"/>
+					<poi_additional tag="route_activity_type" value="kayak" name="route_activity_type_kayak"/>
+					<poi_additional tag="route_activity_type" value="surfing" name="route_activity_type_surfing"/>
+					<poi_additional tag="route_activity_type" value="swimming_outdoor" name="route_activity_type_swimming_outdoor"/>
+					<poi_additional tag="route_activity_type" value="waterskiing" name="route_activity_type_waterskiing"/>
+					<poi_additional tag="route_activity_type" value="windsurfing" name="route_activity_type_windsurfing"/>
+					<poi_additional tag="route_activity_type" value="motorboat" name="route_activity_type_motorboat"/>
+					<poi_additional tag="route_activity_type" value="rafting" name="route_activity_type_rafting"/>
+				</poi_additional_category>
+			</poi_type>
+			<poi_type tag="route_type" value="other" name="routes_other">
+				<poi_additional_category name="routes_other">
+					<poi_additional tag="route_activity_type" value="horse_riding" name="route_activity_type_horse_riding"/>
+					<poi_additional tag="route_activity_type" value="mushrooms_picking" name="route_activity_type_mushrooms_picking"/>
+					<poi_additional tag="route_activity_type" value="harvesting" name="route_activity_type_harvesting"/>
+					<poi_additional tag="route_activity_type" value="tree_climbing" name="route_activity_type_tree_climbing"/>
+					<poi_additional tag="route_activity_type" value="caving" name="route_activity_type_caving"/>
+					<poi_additional tag="route_activity_type" value="train_riding" name="route_activity_type_train_riding"/>
+					<poi_additional tag="route_activity_type" value="golfing" name="route_activity_type_golfing"/>
+					<poi_additional tag="route_activity_type" value="fitness" name="route_activity_type_fitness"/>
+					<poi_additional tag="route_activity_type" value="inline_skates" name="route_activity_type_inline_skates"/>
+				</poi_additional_category>
+			</poi_type>
+			<!-- TravelGpx track POI additional tags non-filterable -->
+			<!-- route_info_tags -->
+				<poi_additional name="filename" tag="filename" type="text"/>
 				<poi_additional name="user" tag="user" type="text"/>
 				<poi_additional name="date" tag="date" type="text"/>
-				<poi_additional name="tag_road_road" tag="tag_road" value="road"/>
 				<poi_additional name="distance" tag="distance" type="text"/>
 				<poi_additional name="time_span" tag="time_span" type="text"/>
 				<poi_additional name="time_span_no_gaps" tag="time_span_no_gaps" type="text"/>
@@ -5362,52 +5457,28 @@
 				<poi_additional name="avg_speed" tag="avg_speed" type="text"/>
 				<poi_additional name="max_speed" tag="max_speed" type="text"/>
 				<poi_additional name="min_speed" tag="min_speed" type="text"/>
-				<poi_additional name="route_radius" tag="route_radius" type="text"/>
-				<poi_additional_category name="route_activity_type">
-					<poi_additional name="route_activity_type_water" tag="route_activity_type" value="water"/>
-					<poi_additional name="route_activity_type_winter" tag="route_activity_type" value="winter"/>
-					<poi_additional name="route_activity_type_snowmobile" tag="route_activity_type" value="snowmobile"/>
-					<poi_additional name="route_activity_type_riding" tag="route_activity_type" value="riding"/>
-					<poi_additional name="route_activity_type_racing" tag="route_activity_type" value="racing"/>
-					<poi_additional name="route_activity_type_mountainbike" tag="route_activity_type" value="mountainbike"/>
-					<poi_additional name="route_activity_type_cycling" tag="route_activity_type" value="cycling"/>
-					<poi_additional name="route_activity_type_hiking" tag="route_activity_type" value="hiking"/>
-					<poi_additional name="route_activity_type_running" tag="route_activity_type" value="running"/>
-					<poi_additional name="route_activity_type_walking" tag="route_activity_type" value="walking"/>
-					<poi_additional name="route_activity_type_offroad" tag="route_activity_type" value="offroad"/>
-					<poi_additional name="route_activity_type_motorbike" tag="route_activity_type" value="motorbike"/>
-					<poi_additional name="route_activity_type_car" tag="route_activity_type" value="car"/>
-				</poi_additional_category>
-				<!-- OBF-GPX track: extensions tags (prefixed with gpx_) -->
-				<poi_additional name="gpx_show_arrows" tag="gpx_show_arrows" type="text"/>
-				<poi_additional name="gpx_show_start_finish" tag="gpx_show_start_finish" type="text"/>
-				<poi_additional name="gpx_split_interval" tag="gpx_split_interval" type="text"/>
-				<poi_additional name="gpx_split_type" tag="gpx_split_type" type="text"/>
-				<poi_additional name="gpx_line_3d_visualization_by_type" tag="gpx_line_3d_visualization_by_type" type="text"/>
-				<poi_additional name="gpx_line_3d_visualization_wall_color_type" tag="gpx_line_3d_visualization_wall_color_type" type="text"/>
-				<poi_additional name="gpx_line_3d_visualization_position_type" tag="gpx_line_3d_visualization_position_type" type="text"/>
-				<poi_additional name="gpx_vertical_exaggeration_scale" tag="gpx_vertical_exaggeration_scale" type="text"/>
-				<poi_additional name="gpx_elevation_meters" tag="gpx_elevation_meters" type="text"/>
-				<poi_additional name="gpx_color_palette" tag="gpx_color_palette" type="text"/>
-				<poi_additional name="gpx_coloring_type" tag="gpx_coloring_type" type="text"/>
-				<poi_additional name="gpx_color" tag="gpx_color" type="text"/>
-				<poi_additional name="gpx_width" tag="gpx_width" type="text"/>
-				<!-- OBF-GPX track: osmand:points_groups list by tags -->
+				<poi_additional name="route_bbox_radius" tag="route_bbox_radius" type="text"/>
+			<!-- shields -->
+				<poi_additional name="shield_bg" tag="shield_bg" type="text"/>
+				<poi_additional name="shield_fg" tag="shield_fg" type="text"/>
+				<poi_additional name="shield_fg_2" tag="shield_fg_2" type="text"/>
+				<poi_additional name="shield_text" tag="shield_text" type="text"/>
+				<poi_additional name="shield_textcolor" tag="shield_textcolor" type="text"/>
+				<poi_additional name="shield_waycolor" tag="shield_waycolor" type="text"/> <!-- special to restore as a color -->
+			<!-- track color -->
+				<poi_additional name="track_color" tag="track_color" type="text"/>
+				<poi_additional name="translucent_line_colors" tag="translucent_line_colors" type="text"/>
+			<!-- waypoint group names-->
 				<poi_additional name="points_groups_names" tag="points_groups_names" type="text"/>
 				<poi_additional name="points_groups_icons" tag="points_groups_icons" type="text"/>
 				<poi_additional name="points_groups_colors" tag="points_groups_colors" type="text"/>
 				<poi_additional name="points_groups_backgrounds" tag="points_groups_backgrounds" type="text"/>
-			</poi_type>
-			<poi_type name="route_track_point" tag="route_type" value="track_point">
-				<!-- OBF-GPX point: icon extensions -->
-				<poi_additional name="gpx_bg" tag="gpx_bg" type="text"/>
-				<poi_additional name="gpx_icon" tag="gpx_icon" type="text"/>
-				<poi_additional name="points_groups_category" tag="points_groups_category" type="text"/> <!-- GPX <type> -->
-			</poi_type>
-			<poi_additional name="color" tag="colour" type="text"/> <!-- global for "routes" category -->
-			<!-- OBF-GPX track (relation id) / points (node id) -->
-			<poi_additional name="osm_id" tag="osm_id" type="text"/>
+			<!-- JSON with non-poi-additional original GPX tags -->
+			<!-- Note: not transformed with MapRenderingTypesEncoder -->
+				<poi_additional name="metadata_extra_tags" tag="metadata_extra_tags" type="text"/>
+				<poi_additional name="extensions_extra_tags" tag="extensions_extra_tags" type="text"/> <!-- see wpt_extra_tags for points -->
 		</poi_category>
+
 		<poi_category name="user_defined_other" default_tag="amenity" no_edit="true" excluded_poi_additional_category="fee,payment_type,wheelchair_accessibility,internet_access_type,opening_hours">
 			<!-- Add additional combination for UK postcode POI files-->
 			<poi_type name="user_defined_other_postcode" tag="user_defined_other" value="postcode" no_edit="true"/>

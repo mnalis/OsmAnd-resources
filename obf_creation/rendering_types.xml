@@ -10,7 +10,11 @@
 		<type 
 		tag="" value="" - necessary
 		minzoom="" - indexed for map section (min zoom)
+
 		?additional="true/text" - attach tag/value to another map object
+			Note: additional="true" is supposed to use with tags that have a limited range of values (to avoid dictionary overflow)
+				Use additional="true" for: POI type, icon names, category names, text-colors (red,green,blue), etc.
+				Use additional="text" for: ids, latlon, hex-colors, elevation values, ref, name, description, etc.
 		?poi - register only for poi (deprecated)
 		?map - register only for map (deprecated)
 		?relation - propogate tag from relation objects to
@@ -728,6 +732,14 @@
 	<type tag="indoor" value="wall" minzoom="12"/>
 	<type tag="door" value="hinged" minzoom="12" order="100"/>
 
+	<type tag="proposed" value="yes" minzoom="12" additional="true"/>
+	<entity_convert pattern="tag_transform" from_tag="proposed:man_made" to_tag1="man_made" to_tag2="proposed" to_value2="yes" poi="no" notosm="true"/>
+<!--	<entity_convert pattern="tag_transform" from_tag="proposed:amenity" to_tag1="amenity" to_tag2="proposed" to_value2="yes" poi="no" notosm="true"/>
+	<entity_convert pattern="tag_transform" from_tag="proposed:power" to_tag1="power" to_tag2="proposed" to_value2="yes" poi="no" notosm="true"/>
+	<entity_convert pattern="tag_transform" from_tag="proposed:barrier" to_tag1="barrier" to_tag2="proposed" to_value2="yes" poi="no" notosm="true"/>
+	<entity_convert pattern="tag_transform" from_tag="proposed:leisure" to_tag1="leisure" to_tag2="proposed" to_value2="yes" poi="no" notosm="true"/>
+	<entity_convert pattern="tag_transform" from_tag="proposed:shop" to_tag1="barrier" to_tag2="proposed" to_value2="yes" poi="no" notosm="true"/>-->
+
 	<type tag="osmand_foot_prohibited_tunnel" value="yes" minzoom="15"/>
 	<type tag="osmand_bicycle_prohibited_tunnel" value="yes" minzoom="15"/>
 
@@ -1154,47 +1166,44 @@
 	
 
 	<category name="routes">
-		<type tag="route" value="segment" minzoom="3" nameTags="shield_text,ref,name"/>
-		<type tag="route" value="point" minzoom="3" nameTags="shield_text,ref,name"/>
+		<type tag="route" value="segment" minzoom="3" nameTags="ref,name,shield_text,shield_stub_name"/>
+		<type tag="route" value="point" minzoom="3" nameTags="ref,name"/>
+
+		<type tag="route_id" additional="text" minzoom="3"/>
+
 		<type tag="category" additional="true" minzoom="3"/>
 		<type tag="route_activity_type" additional="true" minzoom="3"/>
-		<type tag="diff_ele_up" additional="true" minzoom="3"/>
-		<type tag="diff_ele_down" additional="true" minzoom="3"/>
 
-		<type tag="min_ele__start" additional="true" minzoom="3"/>
-		<type tag="max_ele__start" additional="true" minzoom="3"/>
-		<type tag="avg_ele__start" additional="true" minzoom="3"/>
-		<type tag="end_ele__start" additional="true" minzoom="3"/>
+		<type tag="min_ele" additional="text" minzoom="3"/>
+		<type tag="avg_ele" additional="text" minzoom="3"/>
+		<type tag="max_ele" additional="text" minzoom="3"/>
+
 		<type tag="start_ele" additional="text" minzoom="3"/>
 		<type tag="ele_graph" additional="text" minzoom="3"/>
+
+		<type tag="diff_ele_up" additional="text" minzoom="3"/>
+		<type tag="diff_ele_down" additional="text" minzoom="3"/>
+
+		<!-- Unknown and actually unused tags: -->
+		<!-- <type tag="min_ele__start" additional="text" minzoom="3"/> -->
+		<!-- <type tag="max_ele__start" additional="text" minzoom="3"/> -->
+		<!-- <type tag="avg_ele__start" additional="text" minzoom="3"/> -->
+		<!-- <type tag="end_ele__start" additional="text" minzoom="3"/> -->
 
 		<type tag="shield_bg" additional="true" minzoom="3"/>
 		<type tag="shield_fg" additional="true" minzoom="3"/>
 		<type tag="shield_fg_2" additional="true" minzoom="3"/>
-		<type tag="shield_text" additional="true" minzoom="3"/>
-		<type tag="shield_textcolor" additional="true" minzoom="3"/>
+		<type tag="shield_text" additional="text" minzoom="3"/>
+		<type tag="shield_textcolor" additional="text" minzoom="3"/>
+		<type tag="shield_stub_name" additional="true" minzoom="3"/>
 
-		<type tag="gpx_bg" additional="true" minzoom="3"/>
-		<type tag="gpx_icon" additional="true" minzoom="3"/>
-		<type tag="gpx_icon_2" additional="true" minzoom="3"/>
-		<type tag="gpx_width" additional="true" minzoom="3"/>
+		<type tag="width" additional="true" minzoom="3"/>
+		<type tag="track_color" additional="true" minzoom="3"/>
+		<type tag="translucent_line_colors" additional="true" minzoom="3"/>
 
-		<type tag="relation_gpx" additional="true" minzoom="3"/>
-
-		<type tag="route_id" additional="text" minzoom="3"/>
-		<type tag="osm_id" additional="text" minzoom="3"/>
-
-		<!--		<type tag="gpx_icon" additional="true"/>
-
-		<type tag="thickness" value="bold" minzoom="3" additional="true"/>
-		<type tag="thickness" value="medium" minzoom="3" additional="true"/>
-		<type tag="thickness" value="thin" minzoom="3" additional="true"/>
-		<type tag="pattern" value="dashed" minzoom="3" additional="true"/>
-		<type tag="transparency" value="25" minzoom="3" additional="true"/>
-		<type tag="transparency" value="50" minzoom="3" additional="true"/>
-		<type tag="transparency" value="75" minzoom="3" additional="true"/>
-		<type tag="icon" minzoom="3" additional="true"/>-->
-
+		<type tag="icon" additional="true" minzoom="3"/>
+		<type tag="background" additional="true" minzoom="3"/>
+		<type tag="gpx_icon" additional="true" minzoom="3"/> <!-- Wikivoyage -->
 	</category>
 	
 	<category name="highway">
@@ -4449,7 +4458,6 @@
 		<entity_convert pattern="tag_transform" from_tag="man_made" from_value="campanile" to_tag1="man_made" to_value1="tower" to_tag2="tower:type" to_value2="bell_tower"/>
 		<entity_convert pattern="tag_transform" from_tag="historic" from_value="tower" to_tag1="man_made" to_value1="tower" to_tag2="historic" to_value2="yes"/>
 		<type tag="man_made" value="antenna" minzoom="14"/>
-		<entity_convert pattern="tag_transform" from_tag="tower:type" from_value="communication" to_tag1="tower:type" to_value1="communication" to_tag2="man_made" to_value2="tower" poi="no"/>
 		<type tag="man_made" value="mast" minzoom="10" nameTags="seamark:name,name,seamark:light:character,seamark:light:add_sectors,seamark:light:1:add_sector,seamark:light:2:add_sector,seamark:light:3:add_sector,seamark:light:4:add_sector,seamark:light:5:add_sector"/> <!-- nameTags for INT-1 P Section Lights -->
 		<entity_convert pattern="tag_transform" from_tag="tower:type" from_value="mast" if_not_tag1="man_made" if_not_value1="mast" to_tag1="man_made" to_value1="mast"/>
 		<type tag="man_made" value="satellite_dish" minzoom="14"/>
@@ -5456,7 +5464,8 @@
 		<type tag="natural" value="landslide" minzoom="11" />
 		<type tag="natural" value="desert" minzoom="6" />
 		<type tag="natural" value="lava" minzoom="6" />
-		<type tag="natural" value="peak" minzoom="10" nameTags="ele,ele_feet" order="45"/>
+		<type tag="natural" value="peak" minzoom="6" nameTags="ele,ele_feet" order="45"/>
+		<type tag="osmand_prominent_peak" value="yes" minzoom="6" additional="true"/>
 		<type tag="natural" value="hill" minzoom="13" nameTags="ele,ele_feet" />
 		<type tag="natural" value="bare_rock" minzoom="10" order="55"/>
 		<type tag="natural" value="rock" minzoom="10" />
@@ -5478,7 +5487,7 @@
 		<entity_convert pattern="tag_transform" from_tag="rtsa_scale" from_value="2А-2Б" to_tag1="rtsa_scale" to_value1="2Б" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="natural" from_value="waterfall" to_tag1="waterway"/>
 		<type tag="natural" value="cape" minzoom="9" />
-		<type tag="natural" value="volcano" minzoom="10" nameTags="ele,ele_feet" />
+		<type tag="natural" value="volcano" minzoom="6" nameTags="ele,ele_feet" />
 		<type tag="volcano:type" value="mud" minzoom="9" additional="true"/>
 		<entity_convert pattern="tag_transform" from_tag="volcano" from_value="yes" to_tag1="natural" to_value1="volcano" map="no"/>
 		<entity_convert pattern="tag_transform" from_tag="volcano:type" from_value="dirt" to_tag1="volcano:type" to_value1="mud"/>
@@ -6523,73 +6532,134 @@
 		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="6+" to_tag1="via_ferrata_scale" to_value1="6"/>
 		<entity_convert pattern="tag_transform" from_tag="via_ferrata_scale" from_value="6-" to_tag1="via_ferrata_scale" to_value1="6"/>
 
+		<type tag="osmand_climbing" value="route" minzoom="14"/>
+		<type tag="osmand_climbing_grade" additional="true" minzoom="14"/>
+		<type tag="climbing" value="route" minzoom="14" propagateToNodes="center" propagateToNodesPrefix="osmand_"/>
+		<type tag="climbing" value="route_bottom" minzoom="14"/>
+
 		<type tag="climbing_crag" value="crag" minzoom="13" additional="true" relation="true"/>
 		<entity_convert pattern="tag_transform" from_tag="climbing" from_value="crag" if_not_tag1="sport" to_tag1="climbing_crag" to_value1="crag" to_tag2="sport" to_value2="climbing"/>
 		<entity_convert pattern="tag_transform" from_tag="climbing" from_value="crag" to_tag1="climbing_crag" to_value1="crag"/>
 
 		<entity_convert pattern="tag_transform" from_tag="climbing" from_value="boulder" if_not_tag1="natural" if_not_tag2="leisure" to_tag1="climbing" to_value1="boulder" to_tag2="natural" to_value2="stone"/>
 
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="1" to_tag1="climbing:grade:uiaa" to_value1="1" to_tag2="osmand_climbing_grade" to_value2="novice" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="2" to_tag1="climbing:grade:uiaa" to_value1="2" to_tag2="osmand_climbing_grade" to_value2="novice" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="3" to_tag1="climbing:grade:uiaa" to_value1="3" to_tag2="osmand_climbing_grade" to_value2="novice" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="4" to_tag1="climbing:grade:uiaa" to_value1="4" to_tag2="osmand_climbing_grade" to_value2="beginner" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="4+" to_tag1="climbing:grade:uiaa" to_value1="4+" to_tag2="osmand_climbing_grade" to_value2="beginner" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="5" to_tag1="climbing:grade:uiaa" to_value1="5" to_tag2="osmand_climbing_grade" to_value2="beginner" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="5+" to_tag1="climbing:grade:uiaa" to_value1="5+" to_tag2="osmand_climbing_grade" to_value2="beginner" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="6" to_tag1="climbing:grade:uiaa" to_value1="6" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="6-" to_tag1="climbing:grade:uiaa" to_value1="6-" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="6+" to_tag1="climbing:grade:uiaa" to_value1="6+" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="7" to_tag1="climbing:grade:uiaa" to_value1="7" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="7-" to_tag1="climbing:grade:uiaa" to_value1="7-" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="7+" to_tag1="climbing:grade:uiaa" to_value1="7+" to_tag2="osmand_climbing_grade" to_value2="advanced" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="8" to_tag1="climbing:grade:uiaa" to_value1="8" to_tag2="osmand_climbing_grade" to_value2="advanced" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="8-" to_tag1="climbing:grade:uiaa" to_value1="8-" to_tag2="osmand_climbing_grade" to_value2="advanced" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="8+" to_tag1="climbing:grade:uiaa" to_value1="8+" to_tag2="osmand_climbing_grade" to_value2="advanced" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="9" to_tag1="climbing:grade:uiaa" to_value1="9" to_tag2="osmand_climbing_grade" to_value2="expert" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="9-" to_tag1="climbing:grade:uiaa" to_value1="9-" to_tag2="osmand_climbing_grade" to_value2="advanced" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="9+" to_tag1="climbing:grade:uiaa" to_value1="9+" to_tag2="osmand_climbing_grade" to_value2="expert" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="10" to_tag1="climbing:grade:uiaa" to_value1="10" to_tag2="osmand_climbing_grade" to_value2="elite" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="10-" to_tag1="climbing:grade:uiaa" to_value1="10-" to_tag2="osmand_climbing_grade" to_value2="super_expert" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="10+" to_tag1="climbing:grade:uiaa" to_value1="10+" to_tag2="osmand_climbing_grade" to_value2="elite" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="11" to_tag1="climbing:grade:uiaa" to_value1="11" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="11-" to_tag1="climbing:grade:uiaa" to_value1="11-" to_tag2="osmand_climbing_grade" to_value2="elite" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="11+" to_tag1="climbing:grade:uiaa" to_value1="11+" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="12" to_tag1="climbing:grade:uiaa" to_value1="12" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="12-" to_tag1="climbing:grade:uiaa" to_value1="12-" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="12+" to_tag1="climbing:grade:uiaa" to_value1="12+" to_tag2="osmand_climbing_grade" to_value2="aliens" map="no" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="1" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="novice" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="2" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="novice" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="3" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="novice" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="4" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="beginner" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="4+" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="beginner" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="5" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="beginner" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="5+" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="beginner" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="6" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="6-" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="6+" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="7" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="7-" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="7+" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="advanced" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="8" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="advanced" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="8-" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="advanced" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="8+" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="advanced" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="9" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="expert" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="9-" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="advanced" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="9+" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="expert" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="10" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="10-" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="super_expert" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="10+" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="11" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="11-" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="11+" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="12" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="12-" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:uiaa" from_value="12+" to_tag1="climbing:grade:uiaa" to_tag2="osmand_climbing_grade" to_value2="aliens" map="yes" routing="no" poi="yes"/>
 
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="1" to_tag1="climbing:grade:french" to_value1="1" to_tag2="osmand_climbing_grade" to_value2="novice" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="2" to_tag1="climbing:grade:french" to_value1="2" to_tag2="osmand_climbing_grade" to_value2="novice" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="3" to_tag1="climbing:grade:french" to_value1="3" to_tag2="osmand_climbing_grade" to_value2="novice" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="4a" to_tag1="climbing:grade:french" to_value1="4a" to_tag2="osmand_climbing_grade" to_value2="beginner" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="4b" to_tag1="climbing:grade:french" to_value1="4b" to_tag2="osmand_climbing_grade" to_value2="beginner" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="4c" to_tag1="climbing:grade:french" to_value1="4c" to_tag2="osmand_climbing_grade" to_value2="beginner" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="5a" to_tag1="climbing:grade:french" to_value1="5a" to_tag2="osmand_climbing_grade" to_value2="beginner" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="5b" to_tag1="climbing:grade:french" to_value1="5b" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="5c" to_tag1="climbing:grade:french" to_value1="5c" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="6a" to_tag1="climbing:grade:french" to_value1="6a" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="6a+" to_tag1="climbing:grade:french" to_value1="6a+" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="6b" to_tag1="climbing:grade:french" to_value1="6b" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="6b+" to_tag1="climbing:grade:french" to_value1="6b+" to_tag2="osmand_climbing_grade" to_value2="advanced" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="6c" to_tag1="climbing:grade:french" to_value1="6c" to_tag2="osmand_climbing_grade" to_value2="advanced" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="6c+" to_tag1="climbing:grade:french" to_value1="6c+" to_tag2="osmand_climbing_grade" to_value2="advanced" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="7a" to_tag1="climbing:grade:french" to_value1="7a" to_tag2="osmand_climbing_grade" to_value2="advanced" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="7a+" to_tag1="climbing:grade:french" to_value1="7a+" to_tag2="osmand_climbing_grade" to_value2="advanced" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="7b" to_tag1="climbing:grade:french" to_value1="7b" to_tag2="osmand_climbing_grade" to_value2="expert" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="7b+" to_tag1="climbing:grade:french" to_value1="7b+" to_tag2="osmand_climbing_grade" to_value2="expert" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="7c" to_tag1="climbing:grade:french" to_value1="7c" to_tag2="osmand_climbing_grade" to_value2="expert" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="7c+" to_tag1="climbing:grade:french" to_value1="7c+" to_tag2="osmand_climbing_grade" to_value2="expert" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="8a" to_tag1="climbing:grade:french" to_value1="8a" to_tag2="osmand_climbing_grade" to_value2="super_expert" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="8a+" to_tag1="climbing:grade:french" to_value1="8a+" to_tag2="osmand_climbing_grade" to_value2="super_expert" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="8b" to_tag1="climbing:grade:french" to_value1="8b" to_tag2="osmand_climbing_grade" to_value2="elite" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="8b+" to_tag1="climbing:grade:french" to_value1="8b+" to_tag2="osmand_climbing_grade" to_value2="elite" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="8c" to_tag1="climbing:grade:french" to_value1="8c" to_tag2="osmand_climbing_grade" to_value2="elite" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="8c+" to_tag1="climbing:grade:french" to_value1="8c+" to_tag2="osmand_climbing_grade" to_value2="elite" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="9a" to_tag1="climbing:grade:french" to_value1="9a" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="9a+" to_tag1="climbing:grade:french" to_value1="9a+" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="9b" to_tag1="climbing:grade:french" to_value1="9b" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="9b+" to_tag1="climbing:grade:french" to_value1="9b+" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="no" routing="no" poi="yes"/>
-		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="9c" to_tag1="climbing:grade:french" to_value1="9c" to_tag2="osmand_climbing_grade" to_value2="aliens" map="no" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="1" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="novice" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="1+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="novice" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="2" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="novice" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="2+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="novice" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="2-" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="novice" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="3" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="novice" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="3+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="novice" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="3-" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="novice" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="4" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="beginner" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="4+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="beginner" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="4-" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="beginner" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="4a" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="beginner" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="4a+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="beginner" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="4b" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="beginner" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="4b+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="beginner" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="4c" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="beginner" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="4c+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="beginner" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="5" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="beginner" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="5a" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="beginner" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="5a+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="beginner" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="5b" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="5b+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="5c" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="5c+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="5+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="5-" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="beginner" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="6" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="6+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="6-" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="6a" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="6a+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="6b" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="6b+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="advanced" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="6c" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="advanced" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="6c+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="advanced" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="7" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="advanced" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="7+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="advanced" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="7-" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="advanced" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="7a" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="advanced" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="7a+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="advanced" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="7b" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="expert" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="7b+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="expert" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="7c" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="expert" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="7c+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="expert" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="8" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="super_expert" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="8" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="super_expert" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="8+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="super_expert" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="8-" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="super_expert" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="8a+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="super_expert" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="8b" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="8b+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="8c" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="8c+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="9" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="9+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="9-" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="9a" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="9a+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="9b" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="9b+" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:french" from_value="9c" to_tag1="climbing:grade:french" to_tag2="osmand_climbing_grade" to_value2="aliens" map="yes" routing="no" poi="yes"/>
+
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="I" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="novice" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="II" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="novice" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="III" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="novice" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="IV" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="beginner" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="V" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="VI" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="VII" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="VIIa" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="VIIb" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="VIIc" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="VIIIa" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="VIIIb" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="intermediate" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="VIIIc" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="advanced" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="IXa" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="advanced" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="IXb" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="advanced" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="IXc" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="advanced" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="Xa" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="expert" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="Xb" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="expert" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="Xc" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="super_expert" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="XIa" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="super_expert" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="XIb" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="XIc" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="XIIa" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="XIIb" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="XIIc" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="yes" routing="no" poi="yes"/>
+		<entity_convert pattern="tag_transform" from_tag="climbing:grade:saxon" from_value="XIII" to_tag1="climbing:grade:saxon" to_tag2="osmand_climbing_grade" to_value2="super_elite" map="yes" routing="no" poi="yes"/>
 
 		<entity_convert pattern="tag_transform" from_tag="climbing:bolts" from_value="yes" to_tag1="osmand_climbing_bolts" to_value1="yes" map="no" routing="no" poi="yes"/>
 		<entity_convert pattern="tag_transform" from_tag="climbing:bolts" from_value="no" to_tag1="osmand_climbing_bolts" to_value1="no" map="no" routing="no" poi="yes"/>
@@ -7172,7 +7242,44 @@
 		<routing_type tag="route_horse_*_tourism" seq="1:10" mode="text" base="false"/>
 		<routing_type tag="route_horse_*_description" seq="1:10" mode="text" base="false"/>
 		<routing_type tag="route_horse_*_relation_id" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste" mode="register" base="true"/>
+		<routing_type tag="route_piste_*" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_name" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_network" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_ref" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_operator" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_symbol" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_website" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_wikipedia" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_survey:date" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_osmc_stub_name" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_osmc_text" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_osmc_textcolor" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_osmc_text_symbol" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_osmc_foreground" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_osmc_foreground2" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_osmc_background" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_osmc_waycolor" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_piste:type" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_piste:difficulty" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_piste:grooming" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_piste:abandoned" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_piste:oneway" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_piste_region" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_from" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_via" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_to" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_distance" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_state" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_colour" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_ascent" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_descent" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_description" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_roundtrip" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_tourism" seq="1:10" mode="text" base="false"/>
+		<routing_type tag="route_piste_*_relation_id" seq="1:10" mode="text" base="false"/>
 		<!-- <routing_type tag="route" value="bus" mode="register" base="true" relation="true"/> -->
+
 		<routing_type tag="railway" mode="register"/>
 
 		<routing_type tag="waterway" value="river" mode="register" base="true"/>

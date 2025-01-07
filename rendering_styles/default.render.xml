@@ -356,6 +356,15 @@
 		</apply>
 	</renderingAttribute>
 
+	<renderingAttribute name="straightWalkingRouteLine">
+		<case pathEffect="5_3" color="#407ef5"/>
+		<apply>
+			<apply_if maxzoom="14" strokeWidth="8" strokeWidth_2="9"/>
+			<apply_if minzoom="15" maxzoom="15" strokeWidth="10" strokeWidth_2="12"/>
+			<apply_if minzoom="16" strokeWidth="12" strokeWidth_2="14"/>
+		</apply>
+	</renderingAttribute>
+
 	<renderingAttribute name="waterwayArrows">
 		<case attrIntValue="1"/>
 	</renderingAttribute>
@@ -1050,20 +1059,10 @@
 		</case>
 	</renderingAttribute>
 
-	<!-- NOTE: Road is usually public, while service road is not, that's why we should mabye use the residential and not service road color pattern here: -->
+	<!-- NOTE: A `Road` represents a way of unknown classification and could be anything—from a motorway to a private driveway or even a public footpath. Ways tagged as `Road` need to be (re)surveyed. Additional tags should not affect rendering until the way is reclassified into a more specific category. -->
 	<renderingAttribute name="roadRoadColor">
-		<case baseAppMode="bicycle" additional="cyclestreet=yes" attrColorValue="#0050FF"/>
-		<case baseAppMode="bicycle" additional="bicycle_road=yes" attrColorValue="#0050FF"/>
-        <case roadStyle="pale" attrColorValue="$roadStylePale_streetColor_day">
-            <apply_if nightMode="true" attrColorValue="$roadStylePale_streetColor_night"/>
-        </case>
-		<case attrColorValue="#ececec">
-			<apply_if nightMode="true" attrColorValue="#555555"/>
-		</case>
-	</renderingAttribute>
-	<renderingAttribute name="roadRoadColorRouteDetails">
-		<case attrColorValue="#dddddd">
-			<apply_if nightMode="true" attrColorValue="#555555"/>
+		<case attrColorValue="#cdcdcd">
+			<apply_if nightMode="true" attrColorValue="#2e2e2e"/>
 		</case>
 	</renderingAttribute>
 
@@ -2081,7 +2080,7 @@
 		<case tag="highway" value="living_street" attrColorValue="#C1B9D1" attrStringValue="highway_class_street"/>
 		<case tag="highway" value="service" attrColorValue="#E3DAF6" attrStringValue="highway_class_service"/>
 		<case tag="highway" value="pedestrian" attrColorValue="$footwayColor" attrStringValue="highway_class_footway"/>
-		<case tag="highway" value="road" attrColorValue="$roadRoadColorRouteDetails" attrStringValue="highway_class_undefined"/>
+		<case tag="highway" value="road" attrColorValue="$roadRoadColor" attrStringValue="highway_class_undefined"/>
 		<case tag="highway" value="footway"  attrColorValue="$footwayColor" attrStringValue="highway_class_footway"/>
 		<case tag="highway" value="bridleway" attrColorValue="$bridlewayColor" attrStringValue="highway_class_bridleway"/>
 		<case tag="highway" value="steps" attrColorValue="$footwayColor" attrStringValue="highway_class_steps"/>
@@ -2469,6 +2468,7 @@
 	<renderingConstant name="tertiaryMinZoom" value="11"/>
 	<renderingConstant name="unclassifiedMinZoom" value="12"/>
 	<renderingConstant name="serviceMinZoom" value="13"/>
+	<renderingConstant name="roadMinZoom" value="14"/>
 	<renderingConstant name="trackMinZoom" value="12"/>
 	<renderingConstant name="pathMinZoom" value="12"/>
 	<renderingConstant name="footwayMinZoom" value="12"/>
@@ -3124,7 +3124,6 @@
 					<case tag="area:highway" value="tertiary"/>
 					<case tag="area:highway" value="pedestrian"/>
 					<case tag="area:highway" value="service"/>
-					<case tag="area:highway" value="road"/>
 					<case tag="area:highway" value="unclassified"/>
 					<case tag="area:highway" value="service"/>
 					<case tag="area:highway" value="residential"/>
@@ -3861,6 +3860,7 @@
 				<apply_if additional="indoor=yes" order="-1"/>
 				<apply_if additional="covered=yes" order="-1"/>
 			</apply_if>
+			<apply_if showProposed="false" additional="proposed=yes" order="-1"/>
 		</switch>
 	</order>
 
@@ -4385,10 +4385,6 @@
 								<case minzoom="16" tag="area:highway" value="residential" textBold="true" textItalic="true" textOrder="125" textWrapWidth="25" intersectsWith="any"/>
 								<case tag="man_made" value="bridge" textOrder="125"/>
 							</switch>
-							<switch textColor="$residentialTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$roadRoadColor">
-								<case tag="highway" value="road" textOrder="120"/>
-								<case minzoom="16" tag="area:highway" value="road" textBold="true" textItalic="true" textWrapWidth="25" textOrder="121"/>
-							</switch>
 							<switch textColor="$serviceTextColor" textHaloRadius="$textHaloRadius" textHaloColor="$serviceTextHaloColor">
 								<case tag="highway" value="service" textOrder="128">
 									<apply>
@@ -4452,6 +4448,7 @@
 						<case tag="cycleway" value="opposite" textOrder="197"/>
 						<case tag="highway" value="steps" textOrder="194"/>
 						<case tag="highway" value="raceway" textOrder="192"/>
+						<case tag="highway" value="road" textOrder="120"/>
 						<apply maxzoom="14" textSize="12"/>
 					</switch>
 					<switch>
@@ -4861,6 +4858,7 @@
 
 			<switch textColor="#654321" textDy="7" textWrapWidth="25" textHaloColor="#aaf1eae4" textHaloRadius="$textHaloRadius" textItalic="true">
 				<switch>
+					<case minzoom="7" tag="natural" value="peak" additional="osmand_prominent_peak=yes" nameTag="" textSize="11" intersectionMargin="5" textOrder="38" textDy="0"/>
 					<case minzoom="$naturalPeakTextMinZoom" tag="natural" value="peak" textOrder="80">
 						<case maxzoom="12" nameTag="ele" textSize="11" intersectionMargin="15"/>
 						<case minzoom="13" maxzoom="13" nameTag="" nameTag2="ele" textSize="11"/>
@@ -4938,11 +4936,16 @@
 					<apply_if nightMode="true" textColor="#ffcc9b" textHaloColor="#774d2803"/>
 					<apply_if legend="true" textDy="0"/>
 				</switch>
-				<case minzoom="$naturalVolcanoTextMinZoom" tag="natural" value="volcano" nameTag="" nameTag2="ele" textOrder="79" textHaloColor="#99ffd6c0">
-					<case maxzoom="12" textSize="12"/>
-					<case minzoom="13" textSize="13"/>
+				<switch tag="natural" value="volcano" textHaloColor="#99ffd6c0">
+					<case minzoom="7" additional="osmand_prominent_peak=yes" nameTag="">
+						<apply textSize="11" intersectionMargin="5" textOrder="37" textDy="0"/>
+					</case>
+					<case minzoom="$naturalVolcanoTextMinZoom" nameTag="" nameTag2="ele" textOrder="79">
+						<case maxzoom="12" textSize="12"/>
+						<case minzoom="13" textSize="13"/>
+					</case>
 					<apply_if nightMode="true" textColor="#ffcc9b" textHaloColor="#77772105"/>
-				</case>
+				</switch>
 				<apply_if engine_v1="false" textDy="0"/>
 				<apply_if additional="ele_limit=200" textOrder="83"/>
 				<apply_if additional="ele_limit=500" textOrder="82"/>
@@ -6742,6 +6745,8 @@
 			<!-- Icons that can be hidden using hideIcons option -->
 			<switch hideIcons="false">
 				<!-- Natural -->
+				<case minzoom="6" tag="natural" value="peak" additional="osmand_prominent_peak=yes" icon="natural_peak" shield="peakvolcano_shield" iconOrder="38" iconVisibleSize="7" intersectionSizeFactor="1"/>
+				<case minzoom="6" tag="natural" value="volcano" additional="osmand_prominent_peak=yes" icon="natural_volcano_map" shield="peakvolcano_shield" iconOrder="37" iconVisibleSize="7" intersectionSizeFactor="1"/>
 				<switch>
 					<case minzoom="$naturalPeakIconMinZoom" tag="natural" value="peak" iconOrder="65">
 						<case maxzoom="11" icon="natural_peak" shield="peakvolcano_shield" iconVisibleSize="25" intersectionSizeFactor="2">
@@ -8320,7 +8325,7 @@
 							<apply_if additional="access=no" icon="barrier_small_red_3" iconVisibleSize="0" shield=""/>
 						</apply_if>
 					</case>
-					<case minzoom="18" icon="entrance_main_map" shield="barrier_entrance_small_shield"/>
+					<case minzoom="18" icon="entrance_main_map" shield="barrier_entrance_main_shield"/>
 					<apply_if minzoom="18" maxzoom="18" showAccess="true">
 						<apply_if additional="access=private" icon_2="access_private_red_overlay"/>
 						<apply_if additional="access=no" icon_2="access_private_red_overlay"/>
@@ -8341,10 +8346,10 @@
 							<apply_if additional="access=no" icon="barrier_small_red_3" iconVisibleSize="0" shield=""/>
 						</apply_if>
 					</case>
-					<case minzoom="19" icon="entrance_yes" shield="barrier_entrance_small_shield"/>
+					<case minzoom="19" icon="entrance_yes" shield="barrier_entrance_yes_shield"/>
 				</switch>
 				<switch tag="entrance" value="service">
-					<case minzoom="19" icon="entrance_service" shield="barrier_entrance_small_shield"/>
+					<case minzoom="19" icon="entrance_service" shield="barrier_entrance_main_shield"/>
 				</switch>
 				<switch tag="amenity" value="parking_entrance" >
 					<case maxzoom="17" icon="barrier_small_black_3">
@@ -8617,7 +8622,6 @@
 				<case tag="area:highway" value="primary"/>
 				<case tag="area:highway" value="secondary"/>
 				<case tag="area:highway" value="tertiary"/>
-				<case tag="area:highway" value="road"/>
 				<case tag="area:highway" value="unclassified"/>
 				<case tag="area:highway" value="residential"/>
 				<case tag="man_made" value="bridge"/>
@@ -10211,7 +10215,6 @@
 							<case tag="highway" value="residential"/>
 							<apply color="$residentialRoadColor" color__1="$residentialRoadColor"/>
 						</switch>
-						<case tag="highway" value="road" color="$roadRoadColor"/>
 						<apply cap="ROUND">
 							<case moreDetailed="true" maxzoom="12" strokeWidth="0.9" shadowColor="$residentialRoadLowZoom1ShadowColor"/>
 							<case minzoom="13" maxzoom="13" strokeWidth="1:1" shadowColor="$residentialRoadLowZoom2ShadowColor"/>
@@ -10386,6 +10389,20 @@
 						<case maxzoom="18" strokeWidth="5:5" strokeWidth_0="5:5" pathEffect="7_12" strokeWidth__1="5.7:6.7"/>
 						<case minzoom="19" strokeWidth="6:6" strokeWidth_0="6:6" pathEffect="7_12" strokeWidth__1="6.8:7.7"/>
 					</apply_if>
+				</switch>
+
+				<switch minzoom="$roadMinZoom">
+					<case tag="highway" value="road"/>
+					<apply color="$roadRoadColor" shadowRadius="0">
+						<switch>
+							<case minzoom="14" maxzoom="14" strokeWidth="0.6:0.6"/>
+							<case minzoom="15" maxzoom="15" strokeWidth="1.3:1.3"/>
+							<case minzoom="16" maxzoom="16" strokeWidth="1.7:1.7"/>
+							<case minzoom="17" maxzoom="17" strokeWidth="2.5:2.5"/>
+							<case minzoom="18" maxzoom="18" strokeWidth="3:3"/>
+							<case minzoom="19" strokeWidth="4:4"/>
+						</switch>
+					</apply>
 				</switch>
 
 				<switch minzoom="14">

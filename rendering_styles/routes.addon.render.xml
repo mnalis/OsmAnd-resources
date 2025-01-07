@@ -4,26 +4,28 @@
 		type="string" possibleValues="browse map,car,bicycle,pedestrian"/>
 	<renderingProperty attr="baseAppMode" name="Default Rendering mode" description="Map optimization for respective User Profile based on base (parent) profile"
 		type="string" possibleValues="default, car, bicycle, pedestrian, public_transport, boat, ski"/>
-	<renderingProperty attr="showCycleRoutes" name="Show cycle routes" description="Show long distance cycle routes"
+	<renderingProperty attr="showCycleRoutes" name="Cycle routes" description="Show long distance cycle routes"
 		type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="showCycleNodeNetworkRoutes" name="Show node network cycle routes" description="Show node network cycle routes"
+	<renderingProperty attr="showCycleNodeNetworkRoutes" name="Node network cycle routes" description="Show node network cycle routes"
 		type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="showMtbRoutes" name="Show MTB routes" description="Show mountain bike routes (*cn_networks)"
+	<renderingProperty attr="showMtbRoutes" name="MTB routes" description="Show mountain bike routes (*cn_networks)"
 		type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="showMtbScale" name="Show MTB scale" description="Show trails according to MTB scale"
+	<renderingProperty attr="showMtbScale" name="MTB scale" description="Show trails according to MTB scale"
 		type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="showMtbScaleIMBATrails" name="Show MTB IMBA trails" description="Show specifically designed trails for mountainbiking"
+	<renderingProperty attr="showMtbScaleIMBATrails" name="MTB IMBA trails" description="Show specifically designed trails for mountainbiking"
 		type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="showDirtbikeTrails" name="Show dirt bike trails" description="Show dirt bike trails"
+	<renderingProperty attr="showDirtbikeTrails" name="Dirt bike trails" description="Show dirt bike trails"
+		type="boolean" possibleValues="" category="routes"/>
+	<renderingProperty attr="showClimbingRoutes" name="Climbing routes" description="Show climbing routes"
 		type="boolean" possibleValues="" category="routes"/>
 	<renderingProperty attr="hikingRoutesOSMC" name="Hiking symbol overlay" description="Render symbols of OSMC hiking traces"
 		type="string" possibleValues="walkingRoutesOSMC,walkingRoutesScopeOSMC,walkingRoutesOSMCNodes" defaultValueDescription="disabled" category="routes"/>
 	<renderingProperty attr="horseRoutes" name="Horse routes" description="Horse routes"
 		type="boolean" possibleValues="" category="routes"/>
 
-	<renderingProperty attr="showFitnessTrails" name="Show fitness trails" description="Show fitness trails"
+	<renderingProperty attr="showFitnessTrails" name="Show fitness trails" description="Fitness trails"
 		type="boolean" possibleValues="" category="routes"/>
-	<renderingProperty attr="showRunningRoutes" name="Show running routes" description="Show running routes"
+	<renderingProperty attr="showRunningRoutes" name="Show running routes" description="Running routes"
 		type="boolean" possibleValues="" category="routes"/>
 
 	<renderingAttribute name="cycleRoutelcnColor">
@@ -321,6 +323,50 @@
 		<case attrColorValue="#88ff0000"/>
 	</renderingAttribute>
 
+
+	<renderingAttribute name="climbingRouteColor">
+		<case nightMode="true" attrColorValue="#B1002B"/>
+		<case attrColorValue="#B1002B"/>
+	</renderingAttribute>
+
+	<renderingAttribute name="climbingGradeNoviceColor">
+		<case nightMode="true" attrColorValue="#88C6D794"/>
+		<case attrColorValue="#C6D794"/>
+	</renderingAttribute>
+	<renderingAttribute name="climbingGradeBeginnerColor">
+		<case nightMode="true" attrColorValue="#88E7C1C0"/>
+		<case attrColorValue="#E7C1C0"/>
+	</renderingAttribute>
+	<renderingAttribute name="climbingGradeIntermediateColor">
+		<case nightMode="true" attrColorValue="#88BAACCA"/>
+		<case attrColorValue="#BAACCA"/>
+	</renderingAttribute>
+	<renderingAttribute name="climbingGradeAdvancedColor">
+		<case nightMode="true" attrColorValue="#889FC42E"/>
+		<case attrColorValue="#9FC42E"/>
+	</renderingAttribute>
+	<renderingAttribute name="climbingGradeExpertColor">
+		<case nightMode="true" attrColorValue="#88F7BE8C"/>
+		<case attrColorValue="#F7BE8C"/>
+	</renderingAttribute>
+	<renderingAttribute name="climbingGradeSuperExpertColor">
+		<case nightMode="true" attrColorValue="#888CCFDE"/>
+		<case attrColorValue="#8CCFDE"/>
+	</renderingAttribute>
+	<renderingAttribute name="climbingGradeEliteColor">
+		<case nightMode="true" attrColorValue="#88FFDC59"/>
+		<case attrColorValue="#FFDC59"/>
+	</renderingAttribute>
+	<renderingAttribute name="climbingGradeSuperEliteColor">
+		<case nightMode="true" attrColorValue="#88F17916"/>
+		<case attrColorValue="#F17916"/>
+	</renderingAttribute>
+	<renderingAttribute name="climbingGradeAliensColor">
+		<case nightMode="true" attrColorValue="#88FF325D"/>
+		<case attrColorValue="#FF325D"/>
+	</renderingAttribute>
+
+
 	<renderingConstant name="black" value="#000000"/>
 	<renderingConstant name="white" value="#ffffff"/>
 
@@ -328,6 +374,7 @@
 
 	<renderingConstant name="sportTextColorDay" value="#004d33"/>
 	<renderingConstant name="sportTextHaloColorDay" value="#f1eae4"/>
+	<renderingConstant name="sportTextHaloColorNight" value="#88f1eae4"/>
 
 	<renderingConstant name="null" value="#00000000"/>
 
@@ -336,8 +383,11 @@
 	<order>
 		<!-- Point 101-200 -->
 		<switch area="false" point="true" objectType="1" order="128">
-			<case tag="route" value="point"/> <!-- OBF-GPX point -->
+			<case tag="route" value="point"/> <!-- TravelGpx point -->
 			<case tag="route_hiking" value="" order="-1"/>
+			<case tag="osmand_climbing" value="route"/>
+			<case tag="climbing" value="route"/>
+			<case tag="climbing" value="route_bottom"/>
 		</switch>
 
 		<!-- Polygon 1-10 -->
@@ -348,11 +398,12 @@
 
 		<!-- Line 11-100 -->
 		<switch area="false" objectType="2" order="80">
-			<case tag="route" value="segment" order="100"/> <!-- OBF-GPX track -->
+			<case tag="route" value="segment" order="100"/> <!-- TravelGpx track -->
 			<case tag="route_bicycle" value="" order="186"/>
 			<case tag="route_mtb" value="" order="187"/>
 			<case tag="route_dirtbike" value="" order="187"/>
 			<case tag="osmand_mtb_scale_imba" value="trail" order="189"/>
+			<case tag="climbing" value="route"/>
 			<switch>
 				<!-- old way to display-->
 				<case tag="multiple_node_networks" value="true" order="197"/>
@@ -380,20 +431,21 @@
 	</order>
 
 	<text>
-			<!-- OBF-GPX track name/ref/shield -->
+			<!-- TravelGpx track name/ref/shield -->
 			<switch minzoom="12" tag="route" value="segment" textSize="11" textMinDistance="60" textOrder="2">
 				<case nameTag="" textOnPath="true" textColor="#0078ff" textHaloColor="#ccebf4ff" textHaloRadius="1"/>
 
-				<!-- OBF-GPX relation track icons (use tiny text size for icon-captions which are not based on osmc_text) -->
+				<!-- TravelGpx relation track icons (use tiny text size for icon-captions which are not based on shield_text) -->
 				<case additional="shield_fg" nameTag="shield_text" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
-				<case additional="shield_fg" nameTag="ref" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"
-					  textSize="7" textColor="#ffffff" textHaloRadius="1" textHaloColor="#777777"/>
+				<case additional="shield_fg" nameTag="ref" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?" textSize="7" textColor="#ffffff" textHaloRadius="1" textHaloColor="#777777"/>
+				<case additional="shield_fg" nameTag="shield_stub_name" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?" textSize="1"/>
 
-				<!-- OBF-GPX relation track shield (no icon specified) -->
+				<!-- TravelGpx relation track shield (no icon specified) -->
 				<case additional="shield_bg" nameTag="shield_text" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
 				<case additional="shield_bg" nameTag="ref" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?"/>
+				<case additional="shield_bg" nameTag="shield_stub_name" textShield="?shield_bg?" icon="?shield_fg?" icon_2="?shield_fg_2?" textSize="1"/>
 
-				<!-- OBF-GPX usual shields (based on textLength) -->
+				<!-- TravelGpx usual shields (based on textLength) -->
 				<case nameTag="ref" textOnPath="false" textColor="#404040" textShield="yellow_square_9_road_shield">
 					<apply_if textLength="1" textShield="yellow_hexagon_3_road_shield"/>
 					<apply_if textLength="2" textShield="yellow_hexagon_4_road_shield"/>
@@ -403,7 +455,7 @@
 					<apply_if textLength="6" textShield="yellow_square_8_road_shield"/>
 				</case>
 
-				<!-- OBF-GPX shield_textcolor (osmc_textcolor) -->
+				<!-- TravelGpx shield_textcolor (osmc_textcolor) -->
 				<apply_if additional="shield_textcolor=red" textColor="$osmcRedTextColor"/>
 				<apply_if additional="shield_textcolor=brown" textColor="$osmcBrownTextColor"/>
 				<apply_if additional="shield_textcolor=orange" textColor="$osmcOrangeTextColor"/>
@@ -421,7 +473,7 @@
 				<apply_if additional="shield_textcolor=white" textColor="#ffffff" textHaloRadius="1" textHaloColor="#22000000"/>
 			</switch>
 
-			<!-- OBF-GPX point name -->
+			<!-- TravelGpx point name -->
 			<switch>
 				<case minzoom="11" tag="route" value="point" nameTag="" textWrapWidth="25" textHaloRadius="1" textColor="#0078ff" textHaloColor="#ccebf4ff" textOrder="1" textDy="2">
 					<case maxzoom="11" textSize="10"/>
@@ -811,16 +863,22 @@
 					</apply_if>
 				</case>
 			</switch>
+			<switch showClimbingRoutes="true" minzoom="17" textSize="13" nameTag="" textColor="$sportTextColorDay" textHaloColor="$sportTextHaloColorDay" textHaloRadius="$textHaloRadius" textOrder="167">
+				<case tag="climbing" value="route" textOnPath="true" textBold="true"/>
+				<case tag="climbing" value="route_bottom"/>
+				<apply_if nightMode="true" textHaloColor="$sportTextHaloColorNight"/>
+			</switch>
+
 	</text>
 
 	<point>
-		<!-- OBF-GPX point icon -->
+		<!-- TravelGpx point icon -->
 		<switch minzoom="11" tag="route" value="point" icon="osmand_fav" iconOrder="1">
-			<!--<case additional="gpx_bg=octagon">
+			<!--<case additional="background=octagon">
                 there are not enough shield icons for the octagon shape
             </case>-->
 
-			<case additional="gpx_bg=square">
+			<case additional="background=square">
 				<!-- <case additional="color_orange" shield="gray_orange_square_shield"/> --> <!-- orange = gray_orange -->
 				<!-- <case additional="color_yellow" shield="gray_square_shield"/> --> <!-- yellow = gray -->
 				<!-- <case additional="color_green" shield="gray_green_square_shield"/> --> <!-- green = gray_green -->
@@ -831,16 +889,18 @@
 				<case shield="red_square_big_shield" /> <!-- avoid color mess, just use red for square-shape -->
 			</case>
 
-			<case additional="color_orange" shield="orange_round_shield"/>
+			<case additional="color_orange" shield="waypoint_orange_shield"/>
 			<case additional="color_yellow" shield="gray_round_shield"/> <!-- yellow = gray -->
 			<case additional="color_green" shield="green_round_shield"/>
-			<case additional="color_lightblue" shield="gray_blue_round_shield"/> <!-- lightblue = gray_blue -->
+			<case additional="color_lightgreen" shield="green_round_shield"/>
 			<case additional="color_blue" shield="blue_round_shield"/>
+			<case additional="color_lightblue" shield="gray_blue_round_shield"/> <!-- lightblue = gray_blue -->
 			<case additional="color_purple" shield="purple_round_shield"/>
 			<case additional="color_gray" shield="gray_round_shield"/>
 			<case shield="red_round_shield"/> <!-- default -->
 
-			<apply_if additional="gpx_icon" icon="?gpx_icon?" /> <!-- apply obf-gpx gpx_icon if defined -->
+			<apply_if additional="icon" icon="?icon?" /> <!-- apply TravelGpx icon -->
+			<apply_if additional="gpx_icon" icon="?gpx_icon?" /> <!-- Wikivoyage only -->
 		</switch>
 
 		<switch showFitnessTrails="true" minzoom="17">
@@ -861,74 +921,103 @@
 		<case tag="node_network_point" value="rcn"/>
 		<case tag="node_network_point" value="lcn"/>
 
+		<switch showClimbingRoutes="true">
+			<case minzoom="16" tag="osmand_climbing" value="route" icon="climbing_route" shield="green_round_shield"/>
+			<case minzoom="16" tag="climbing" value="route_bottom" icon="climbing_route_bottom" shield="green_round_shield"/>
+		</switch>
+
 	</point>
 
 	<polygon>
 	</polygon>
 
 	<line>
-		<!-- OBF-GPX relation track width/color -->
-		<switch minzoom="11" tag="route" value="segment" additional="relation_gpx=yes" color="$osmcDefaultColor" cap="ROUND">
-			<apply_if additional="color_white" color="#44ffffff"/>
-			<apply_if additional="color_gray" color="#44999999"/>
-			<apply_if additional="color_darkyellow" color="#44afb61c"/>
-			<apply_if additional="color_lightgreen" color="#446cb52b"/>
-			<apply_if additional="color_lightblue" color="#442ec6ff"/>
-			<apply_if additional="color_red" color="$osmcRedColor"/>
-			<apply_if additional="color_orange" color="$osmcOrangeColor"/>
-			<apply_if additional="color_brown" color="$osmcBrownColor"/>
-			<apply_if additional="color_yellow" color="$osmcYellowColor"/>
-			<apply_if additional="color_green" color="$osmcGreenColor"/>
-			<apply_if additional="color_blue" color="$osmcBlueColor"/>
-			<apply_if additional="color_purple" color="$osmcPurpleColor"/>
-			<apply_if additional="color_black" color="$osmcBlackColor"/>
-			<case maxzoom="11" strokeWidth="1"/>
-			<case maxzoom="12" strokeWidth="2"/>
-			<case maxzoom="13" strokeWidth="3"/>
-			<case maxzoom="14" strokeWidth="4"/>
-			<case maxzoom="15" strokeWidth="4"/>
-			<case maxzoom="16" strokeWidth="5"/>
-			<case maxzoom="17" strokeWidth="6"/>
-			<case minzoom="18" strokeWidth="7"/>
-		</switch>
-
-		<!-- OBF-GPX track width/color -->
+		<!-- TravelGpx track -->
 		<switch minzoom="11" tag="route" value="segment" color="$redColor" cap="ROUND">
-			<case additional="gpx_width=thin">
-				<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
-				<apply_if minzoom="6" strokeWidth="2"/>
-			</case>
-			<case additional="gpx_width=medium">
-				<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
-				<apply_if minzoom="6" maxzoom="11" strokeWidth="3"/>
-				<apply_if minzoom="12" strokeWidth="5"/>
-			</case>
-			<case additional="gpx_width=bold">
-				<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
-				<apply_if minzoom="6" maxzoom="7" strokeWidth="3"/>
-				<apply_if minzoom="8" maxzoom="9" strokeWidth="5"/>
-				<apply_if minzoom="10" maxzoom="11" strokeWidth="7"/>
-				<apply_if minzoom="12" strokeWidth="11"/>
-			</case>
-			<!-- TODO custom width=N should be supported too -->
-			<case>
-				<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
-				<apply_if minzoom="6" strokeWidth="2"/>
-			</case>
-			<!-- OBF-GPX track colors -->
-			<apply_if additional="color_white" color="#ffffff"/>
-			<apply_if additional="color_red" color="#ff0000"/>
-			<apply_if additional="color_orange" color="#ff7200"/>
-			<apply_if additional="color_brown" color="#ba7007"/>
-			<apply_if additional="color_darkyellow" color="#afb61c"/>
-			<apply_if additional="color_yellow" color="#edc300"/>
-			<apply_if additional="color_lightgreen" color="#6cb52b"/>
-			<apply_if additional="color_green" color="#00842b"/>
-			<apply_if additional="color_lightblue" color="#2ec6ff"/>
-			<apply_if additional="color_blue" color="#4e4eff"/>
-			<apply_if additional="color_purple" color="#a71de1"/>
-			<apply_if additional="color_gray" color="#999999"/>
-			<apply_if additional="color_black" color="#000000"/>
+			<!-- TravelGpx track width -->
+			<case strokeWidth="2"/> <!-- width=thin is considered as default -->
+			<apply>
+				<apply_if additional="width=medium">
+					<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
+					<apply_if minzoom="6" maxzoom="11" strokeWidth="3"/>
+					<apply_if minzoom="12" strokeWidth="5"/>
+				</apply_if>
+				<apply_if additional="width=bold">
+					<apply_if minzoom="3" maxzoom="5" strokeWidth="1"/>
+					<apply_if minzoom="6" maxzoom="7" strokeWidth="3"/>
+					<apply_if minzoom="8" maxzoom="9" strokeWidth="5"/>
+					<apply_if minzoom="10" maxzoom="11" strokeWidth="7"/>
+					<apply_if minzoom="12" strokeWidth="11"/>
+				</apply_if>
+				<apply_if additional="width=roadstyle">
+					<apply_if maxzoom="11" strokeWidth="1"/>
+					<apply_if minzoom="12" maxzoom="12" strokeWidth="2"/>
+					<apply_if minzoom="13" maxzoom="13" strokeWidth="3"/>
+					<apply_if minzoom="14" maxzoom="14" strokeWidth="4"/>
+					<apply_if minzoom="15" maxzoom="15" strokeWidth="5"/>
+					<apply_if minzoom="16" maxzoom="16" strokeWidth="6"/>
+					<apply_if minzoom="17" maxzoom="17" strokeWidth="7"/>
+					<apply_if minzoom="18" strokeWidth="8"/>
+				</apply_if>
+				<apply_if additional="width=1" strokeWidth="1" />
+				<apply_if additional="width=2" strokeWidth="2" />
+				<apply_if additional="width=3" strokeWidth="3" />
+				<apply_if additional="width=4" strokeWidth="4" />
+				<apply_if additional="width=5" strokeWidth="5" />
+				<apply_if additional="width=6" strokeWidth="6" />
+				<apply_if additional="width=7" strokeWidth="7" />
+				<apply_if additional="width=8" strokeWidth="8" />
+				<apply_if additional="width=9" strokeWidth="9" />
+				<apply_if additional="width=10" strokeWidth="10" />
+				<apply_if additional="width=11" strokeWidth="11" />
+				<apply_if additional="width=12" strokeWidth="12" />
+				<apply_if additional="width=13" strokeWidth="13" />
+				<apply_if additional="width=14" strokeWidth="14" />
+				<apply_if additional="width=15" strokeWidth="15" />
+				<apply_if additional="width=16" strokeWidth="16" />
+				<apply_if additional="width=17" strokeWidth="17" />
+				<apply_if additional="width=18" strokeWidth="18" />
+				<apply_if additional="width=19" strokeWidth="19" />
+				<apply_if additional="width=20" strokeWidth="20" />
+				<apply_if additional="width=21" strokeWidth="21" />
+				<apply_if additional="width=22" strokeWidth="22" />
+				<apply_if additional="width=23" strokeWidth="23" />
+				<apply_if additional="width=24" strokeWidth="24" />
+			</apply>
+
+			<!-- TravelGpx track colors -->
+			<apply>
+				<case additional="translucent_line_colors=yes" color="$osmcDefaultColor">
+					<apply_if additional="track_color=white" color="#44ffffff"/>
+					<apply_if additional="track_color=gray" color="#44999999"/>
+					<apply_if additional="track_color=darkyellow" color="#44afb61c"/>
+					<apply_if additional="track_color=lightgreen" color="#446cb52b"/>
+					<apply_if additional="track_color=lightblue" color="#442ec6ff"/>
+					<apply_if additional="track_color=red" color="$osmcRedColor"/>
+					<apply_if additional="track_color=orange" color="$osmcOrangeColor"/>
+					<apply_if additional="track_color=brown" color="$osmcBrownColor"/>
+					<apply_if additional="track_color=yellow" color="$osmcYellowColor"/>
+					<apply_if additional="track_color=green" color="$osmcGreenColor"/>
+					<apply_if additional="track_color=blue" color="$osmcBlueColor"/>
+					<apply_if additional="track_color=purple" color="$osmcPurpleColor"/>
+					<apply_if additional="track_color=black" color="$osmcBlackColor"/>
+				</case>
+				<case>
+					<apply_if additional="track_color=white" color="#ffffff"/>
+					<apply_if additional="track_color=red" color="#ff0000"/>
+					<apply_if additional="track_color=orange" color="#ff7200"/>
+					<apply_if additional="track_color=brown" color="#ba7007"/>
+					<apply_if additional="track_color=darkyellow" color="#afb61c"/>
+					<apply_if additional="track_color=yellow" color="#edc300"/>
+					<apply_if additional="track_color=lightgreen" color="#6cb52b"/>
+					<apply_if additional="track_color=green" color="#00842b"/>
+					<apply_if additional="track_color=lightblue" color="#2ec6ff"/>
+					<apply_if additional="track_color=blue" color="#4e4eff"/>
+					<apply_if additional="track_color=purple" color="#a71de1"/>
+					<apply_if additional="track_color=gray" color="#999999"/>
+					<apply_if additional="track_color=black" color="#000000"/>
+				</case>
+			</apply>
 		</switch>
 
 		<switch minzoom="11">
@@ -1069,16 +1158,17 @@
 
 		<switch showDirtbikeTrails="true" minzoom="13">
 			<case tag="route_dirtbike" value="" cap="ROUND" strokeWidth="6">
-				<apply_if additional="dirtbike:scale=0" color="#00ff00"/>
-				<apply_if additional="dirtbike:scale=1" color="#ff9933"/>
-				<apply_if additional="dirtbike:scale=2" color="#ff9933"/>
+				<apply_if additional="dirtbike:scale=0" color="#2AF62A"/>
+				<apply_if additional="dirtbike:scale=1" color="#008000"/>
+				<apply_if additional="dirtbike:scale=2" color="#ffa500"/>
 				<apply_if additional="dirtbike:scale=3" color="#ff0000"/>
-				<apply_if additional="dirtbike:scale=4" color="#ff0000"/>
-				<apply_if additional="dirtbike:scale=5" color="#99000000">
-					<case nightMode="true" color="#cccccc"/>
-				</apply_if>
+				<apply_if additional="dirtbike:scale=4" color="#800080"/>
+				<apply_if additional="dirtbike:scale=5" color="#800000"/>
 				<apply_if additional="dirtbike:scale=6" color="#99000000">
-					<case nightMode="true" color="#cccccc"/>
+					<case nightMode="true" color="#666666"/>
+				</apply_if>
+				<apply_if additional="dirtbike:scale=?" color="#c0c0c0">
+					<case nightMode="true" color="#dddfdfdf"/>
 				</apply_if>
 				<apply_if minzoom="12" maxzoom="13" strokeWidth="6" pathEffect="1_20"/>
 				<apply_if minzoom="13" maxzoom="14" strokeWidth="7.5" pathEffect="1_25"/>
@@ -1269,6 +1359,20 @@
 			<apply_if maxzoom="16" strokeWidth="2.5:2.5"/>
 			<apply_if minzoom="17" strokeWidth="4:4"/>
 		</switch>
+
+		<case showClimbingRoutes="true" minzoom="14" tag="climbing" value="route" color="$climbingRouteColor">
+			<apply_if additional="osmand_climbing_grade=novice" color__2="$climbingGradeNoviceColor"/>
+			<apply_if additional="osmand_climbing_grade=beginner" color__2="$climbingGradeBeginnerColor"/>
+			<apply_if additional="osmand_climbing_grade=intermediate" color__2="$climbingGradeIntermediateColor"/>
+			<apply_if additional="osmand_climbing_grade=advanced" color__2="$climbingGradeAdvancedColor"/>
+			<apply_if additional="osmand_climbing_grade=expert" color__2="$climbingGradeExpertColor"/>
+			<apply_if additional="osmand_climbing_grade=super_expert" color__2="$climbingGradeSuperExpertColor"/>
+			<apply_if additional="osmand_climbing_grade=elite" color__2="$climbingGradeEliteColor"/>
+			<apply_if additional="osmand_climbing_grade=super_elite" color__2="$climbingGradeSuperEliteColor"/>
+			<apply_if additional="osmand_climbing_grade=aliens" color__2="$climbingGradeAliensColor"/>
+			<apply_if maxzoom="15" strokeWidth="1" strokeWidth__2="6" pathEffect="2_2"/>
+			<apply_if minzoom="16" strokeWidth="1:1" strokeWidth__2="8" pathEffect="2_2"/>
+		</case>
 
 	</line>
 </renderingStyle>
